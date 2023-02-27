@@ -4,13 +4,6 @@ import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
-const Section = styled.div`
-    padding-bottom: 7px;
-`
-
-const Add = styled.div`
-cursor: pointer;
-`
 
 const Delete = styled.div`
 cursor: pointer;
@@ -25,12 +18,12 @@ cursor: pointer;
 `
 
 
-function TechnicalSkill(){
+function Profiles(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
 
-    function handleTS(t,index){
+    function handleProfile(t,index){
         const temp = {...resumeData.state};
         let name = t.target.name.split(" ")[0];
 
@@ -38,57 +31,57 @@ function TechnicalSkill(){
         let focusId = t.target.name.split(" ")[1];
         let value = t.target.value;
 
-        if(name === "skills"){
-            temp.technicalSkill.skills[index] = value;
-
-        }else{
-            temp.technicalSkill[name] = value;
-        }
+        temp.profiles[index][name] = value;
 
         temp.focus = {};
         temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
-    function handleAboutListAdd(){
+    function handleProfileListAdd(){
         const temp = {...resumeData.state};
-        temp.technicalSkill.skills.push(" ");
+        temp.profiles.push({name : "", "link" : ""});
         resumeData.setState(temp);
     }
 
-    function handleAboutListDelete(){
+    function handleProfileListDelete(){
         const temp = {...resumeData.state};
-        temp.technicalSkill.skills.pop();
+        temp.profiles.pop();
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
-        temp.technicalSkill.skills = [];
+        temp.profiles = [];
         resumeData.setState(temp);  
     }
 
     return (
         <section>
 
-            <h3>Teachnical Skill</h3>
+            <h3>Profiles</h3>
 
             {                
                 <Wrapper>
-                {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
-                    resumeData.state.technicalSkill.skills.map((item,indx)=>{
-                        return (<input type="text" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
+                    resumeData.state.profiles.map((item,indx)=>{
+                        return (
+                          <>    
+                          <input type="text" name={`name xa${indx}`} value={item.name} autoFocus={focus[`xa${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
+                          <input type="text" name={`link xb${indx}`} value={item.link} autoFocus={focus[`xb${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
+                          </>
+                        );
                     })
                 } 
-                <Button><BsPlusSquare onClick={handleAboutListAdd} /></Button>
-                <Button><AiFillDelete onClick={handleAboutListDelete} /></Button>
+                <Button><BsPlusSquare onClick={handleProfileListAdd} /></Button>
+                <Button><AiFillDelete onClick={handleProfileListDelete} /></Button>
 
                 <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
                 </Wrapper>                                    
             } 
+
         </section>
     )
 }
 
-export default TechnicalSkill;  
+export default Profiles;  

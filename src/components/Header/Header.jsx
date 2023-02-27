@@ -44,7 +44,7 @@ function Header() {
     return (
         <Header>
             <First>
-                <Img src={Logo}/>
+                <Img src={Logo} alt=""/>
             </First>
 
             <Middle>

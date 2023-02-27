@@ -5,10 +5,13 @@ import Education from "./components/Education";
 import Projects from "./components/Projects";
 import TechnicalSkill from "./components/TechnicalSkill";
 import WorkExperience from "./components/WorkExperience";
+import Achievement from "./components/Achievement";
+import Profiles from "./components/Profile";
+import Certificates from "./components/Certificate";
 
 function Edit(){
     const EditOptions = styled.div`
-    height: 100%;
+    height: 100vh;
     width:300px;
     background-color: #9c8686;
     `
@@ -31,7 +34,10 @@ function Edit(){
                 <WorkExperience/>
                 <Projects/>
                 <TechnicalSkill/>
-
+                <Achievement/>
+                <Profiles/>
+                <Certificates/>
+                
             </EditOptions>
         </Edit>
     );

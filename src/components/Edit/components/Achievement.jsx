@@ -4,13 +4,6 @@ import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
-const Section = styled.div`
-    padding-bottom: 7px;
-`
-
-const Add = styled.div`
-cursor: pointer;
-`
 
 const Delete = styled.div`
 cursor: pointer;
@@ -25,12 +18,12 @@ cursor: pointer;
 `
 
 
-function TechnicalSkill(){
+function Achievement(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
 
-    function handleTS(t,index){
+    function handleACH(t,index){
         const temp = {...resumeData.state};
         let name = t.target.name.split(" ")[0];
 
@@ -38,57 +31,53 @@ function TechnicalSkill(){
         let focusId = t.target.name.split(" ")[1];
         let value = t.target.value;
 
-        if(name === "skills"){
-            temp.technicalSkill.skills[index] = value;
-
-        }else{
-            temp.technicalSkill[name] = value;
-        }
+        temp.achievements[index] = value;
 
         temp.focus = {};
         temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
-    function handleAboutListAdd(){
+    function handleAchievementListAdd(){
         const temp = {...resumeData.state};
-        temp.technicalSkill.skills.push(" ");
+        temp.achievements.push(" ");
         resumeData.setState(temp);
     }
 
-    function handleAboutListDelete(){
+    function handleAchievementListDelete(){
         const temp = {...resumeData.state};
-        temp.technicalSkill.skills.pop();
+        temp.achievements.pop();
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
-        temp.technicalSkill.skills = [];
+        temp.achievements = [];
         resumeData.setState(temp);  
     }
 
     return (
         <section>
 
-            <h3>Teachnical Skill</h3>
+            <h3>Achievements</h3>
 
             {                
                 <Wrapper>
                 {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
-                    resumeData.state.technicalSkill.skills.map((item,indx)=>{
-                        return (<input type="text" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
+                    resumeData.state.achievements.map((item,indx)=>{
+                        return (<input type="text" name={`achievement w${indx}`} value={item} autoFocus={focus[`x${indx}`]} onChange={e=>{handleACH(e,indx)}}/>);
                     })
                 } 
-                <Button><BsPlusSquare onClick={handleAboutListAdd} /></Button>
-                <Button><AiFillDelete onClick={handleAboutListDelete} /></Button>
+                <Button><BsPlusSquare onClick={handleAchievementListAdd} /></Button>
+                <Button><AiFillDelete onClick={handleAchievementListDelete} /></Button>
 
                 <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
                 </Wrapper>                                    
             } 
+
         </section>
     )
 }
 
-export default TechnicalSkill;  
+export default Achievement;  

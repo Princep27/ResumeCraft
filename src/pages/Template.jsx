@@ -17,6 +17,11 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     position: relative;
+    @media print {
+    @page {
+        size: 210mm 297mm;
+    }
+    }
 `
 
 const Preview = styled.div`
@@ -41,8 +46,6 @@ position: absolute;
 top:20px;
 right:200px;
 `
-
-
 
 function Template(){
     const componentRef = useRef();

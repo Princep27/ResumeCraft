@@ -1,50 +1,60 @@
 import styled from "styled-components";
+import {MdOutlineWork} from "react-icons/md";
 import { useContext } from "react";
 import resumeContext from "../../../context/resumeContext";
 
-const themeColor = "#0053c6";
-
 
 const Wrapper = styled.div`
-width:100%;
+width:auto;
 height: 10%;
 background-color: transparent;
 display: flex;
 justify-content: center;
 flex-direction: column;
+padding: 4px 70px 4px 70px;
 `
 const Heading = styled.h3`
+padding-bottom:8px;
+padding-top: 8px;
 `
 
 const Section = styled.div`
-width:100%;
-height:400px;
-background-color: azure;
+padding: 5px 0px 5px 0px;
 `
 
-const Position = styled.p`
-width:100%;
+const Position = styled.span`
+width:auto;
 height:auto;
+font-weight: 600;
 `
 
-const CompanyName = styled.p`
-width:100%;
-height:auto;
+const Dash = styled.span`
+font-weight:1000;
+font-size:18px;
 `
 
-const StartDate = styled.p`
-width:100%;
+const CompanyName = styled.span`
+width:auto;
 height:auto;
+font-weight: 600;   
 `
 
-const EndDate = styled.p`
-width:100%;
+const StartDate = styled.span`
 height:auto;
+font-size: 13px;
+color:gray
 `
 
-const Work = styled.p`
-width:100%;
+const EndDate = styled.span`
 height:auto;
+font-size: 13px;
+color:gray;
+`
+
+const Work = styled.li`
+width:auto;
+height:auto;
+padding-left: 15px;
 `
 
 
@@ -55,22 +65,30 @@ function WorkExperience(){
     return (
         <Wrapper>
 
-            {resumeData.state.experience.length ? <Heading>Work Experience</Heading> : "" }
+            {resumeData.state.experience.length ? <Heading style={{"color": resumeData.state.themecolor}} > <MdOutlineWork/> Work Experience</Heading> : "" }
+            {resumeData.state.experience.length ? <hr></hr> :  ""}
+            
 
             {
                 resumeData.state.experience.map((item,index)=>{
                     return (
-                        <>
+                        <Section>
                            <Position>{item.position}</Position>
+                           <Dash>  |  </Dash>
                            <CompanyName>{item.companyName}</CompanyName>
+
+                           <div></div>
+
                            <StartDate>{item.startDate}</StartDate>
+                           <Dash>  -  </Dash>
                            <EndDate>{item.endDate}</EndDate>
+
                            {
                               resumeData.state.experience[index].work.map((itm,idx)=>{
                                 return <Work>{itm}</Work>
                               })
                            }
-                        </>
+                        </Section>
                     );
                 })
             }

@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import { AiOutlineLinkedin,AiFillGithub } from 'react-icons/ai';
+import {MdLocationOn,MdEmail} from "react-icons/md";
+import {IoCall} from "react-icons/io5";
 import { useContext } from "react";
 import resumeContext from "../../../context/resumeContext";
 
-const themeColor = "#0053c6";
 
 const Wrapper = styled.div`
-width:100%;
+width:auto;
 height: 10%;
 background-color: transparent;
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+padding: 7px;
 `
 
 const Name = styled.p`
@@ -25,16 +27,17 @@ const PersonalDetail = styled.div`
   display: flex;    
   align-items: center;
   font-size:15px;
-  color: ${themeColor}
 `
 
-const Email = styled.p`
+const Email = styled.div`
 padding-right: 4%;
+cursor: pointer;
 `
 
-const Contact = styled.p`
+const Contact = styled.div`
 padding-right: 4%;
 font-size: 15px;
+cursor: pointer;
 `
 
 const Address = styled.div`
@@ -43,25 +46,43 @@ font-size: 15px;
 
 const Line = styled.hr`
     width: 100%;
-    background-color: ${themeColor}
 `
+
+const Icon = styled.div`
+font-size: 19px;
+`
+
+const Summary = styled.p`
+font-size: 13px;
+text-align: center;
+letter-spacing: 1px;
+padding: 4px;
+`
+
 
 function BasicDetail(){
 
     const Data = useContext(resumeContext);
 
     return (
-        <Wrapper>
-            <Name>{Data.state.basicDetail.name}</Name>
-            <PersonalDetail>
-                <Email>{Data.state.basicDetail.email}</Email>
-                <Contact>{Data.state.basicDetail.contact}</Contact>
-                <AiOutlineLinkedin style={{"fontSize":"180%"}}/>
-                <AiFillGithub style={{"fontSize":"180%"}}/>
-            </PersonalDetail>
-            <Address>{Data.state.basicDetail.address}</Address>
+        <>
+            <Wrapper>
+                <Name>{Data.state.basicDetail.name}</Name>
+                <PersonalDetail style={{"color": Data.state.themecolor}}>
+                    <Icon><MdEmail/></Icon>
+                    <Email>{Data.state.basicDetail.email}</Email>
+                    <Icon><IoCall/></Icon>
+                    <Contact>{Data.state.basicDetail.contact}</Contact>
+                    <a href={Data.state.basicDetail.linkedin} target="_blank" rel="noreferrer"><Icon><AiOutlineLinkedin/></Icon></a>
+                    <a href={Data.state.basicDetail.github} target="_blank" rel="noreferrer"><Icon><AiFillGithub/></Icon></a>
+                </PersonalDetail>
+                <Address><MdLocationOn/>{Data.state.basicDetail.address}</Address> 
+            </Wrapper>
+            
             <Line/>
-        </Wrapper>
+            <Summary>{Data.state.basicDetail.summary}</Summary>
+            <Line/>
+        </>
     )
 }
 

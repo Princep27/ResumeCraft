@@ -86,15 +86,16 @@ const Wrapper = styled.div`
                 resumeData.state.projects.map((item,index)=>{
                     return (
                         <Wrapper>
-                        <input type="text" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
-                        {
-                            item.about.map((item2,indx)=>{
-                                return (<input type="text" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
-                            })
-                        }
+                            <input type="text" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
+                            <input type="text" name={`link s${index}`} value={item.link} autoFocus={focus[`s${index}`]} onChange={e=>{handleP(e,index,0)}}/>
+                            {
+                                item.about.map((item2,indx)=>{
+                                    return (<input type="text" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
+                                })
+                            }
 
-                        <Button><BsPlusSquare onClick={()=>handleAboutListAdd(index)} /></Button>
-                        <Button><AiFillDelete onClick={()=>handleAboutListDelete(index)} /></Button>
+                            <Button><BsPlusSquare onClick={()=>handleAboutListAdd(index)} /></Button>
+                            <Button><AiFillDelete onClick={()=>handleAboutListDelete(index)} /></Button>
                         </Wrapper>
                     )                           
                 })

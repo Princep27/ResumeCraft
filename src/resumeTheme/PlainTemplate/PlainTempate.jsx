@@ -3,29 +3,18 @@ import BasicDetail from "./Component/BasicDetail";
 import Education from "./Component/Eduaction";
 import WorkExperience from "./Component/WorkExperience";
 import Projects from "./Component/Projects";
+import Achievement from "./Component/Achievement";
+import Profiles from "./Component/Profiles";
 import TechnicalSkill from "./Component/TechnicalSkill";
+import Certificates from "./Component/Certificate";
 import {RxDragHandleHorizontal} from "react-icons/rx";
 import { useState } from "react";
 import { DragDropContext,Droppable,Draggable } from "react-beautiful-dnd";
 
-function PlainTemplate(){
+function PlainTemplate(){                   
     const Wrapper = styled.div`
         height:100%;
         width:100%;
-    `
-    const Achievement = styled.div`
-    width: 100%;
-    height:auto;
-    `
-
-    const Profiles = styled.div`
-        width:100%;
-        height:auto;
-    `
-
-    const Certificates = styled.div`
-        width:100%;
-        height:auto;
     `
 
     const Icon = styled.span`
@@ -36,8 +25,7 @@ function PlainTemplate(){
     font-size: 30px;
     `
 
-    const Container = styled.div`
-        cursor: pointer;
+    const Container = styled.div`   
         position:relative;
         :hover {
             background-color: #ededed69;

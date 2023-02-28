@@ -1,8 +1,17 @@
-import ResumeContext from "../context/resumeContext";
-import { useState } from "react";
+import styled from "styled-components";
+import { useContext } from "react";
+import resumeContext from "../../../context/resumeContext";
 
-const ResumeState = (props) => {
-    const st = {
+const Button = styled.button`
+padding: 4px 15px 4px 15px;
+cursor: pointer;
+`
+
+function Reset(){
+
+    const resumeData = useContext(resumeContext);
+    const state = {
+
         "themecolor" : "#0053c6",
 
         "basicDetail" : {
@@ -121,15 +130,14 @@ const ResumeState = (props) => {
         "focus" : {
             
         },
+    };
+
+    function handleClick(){
+        resumeData.setState(state);
+        localStorage.setItem("data",JSON.stringify(state));
     }
+    
+    return <Button onClick={handleClick}>Reset</Button>
+}
 
-    const [state,setState] = useState(st);
-
-    return (
-            <ResumeContext.Provider value={{state,setState}}>
-                {props.children} 
-            </ResumeContext.Provider    >
-    )
-}   
-
-export default ResumeState; 
+export default Reset;

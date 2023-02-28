@@ -40,7 +40,7 @@ function Certificates(){
 
     function handleCertificatesListAdd(){
         const temp = {...resumeData.state};
-        temp.certificates.push(" ");
+        temp.certificates.push({"name" : "", "link" : ""});
         resumeData.setState(temp);
     }
 
@@ -77,7 +77,7 @@ function Certificates(){
 
                 <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
                 </Wrapper>                                    
-            } 
+            }   
 
         </section>
     )

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import Image from "../images/bg.png";
+import Image from "../images/bg.jpeg";
 import { useContext } from "react";
 import ResumeContext from "../context/resumeContext";
 
@@ -14,7 +14,6 @@ function Home() {
     `
 
     const Body = styled.div`
-    background-color: #b9b9b9;
     background-image: url(${Image});
     background-repeat: none;
     background-size: cover;
@@ -23,19 +22,20 @@ function Home() {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;    
+    align-items: center;   
     `   
 
     const P = styled.p`
     font-size: 30px;
     letter-spacing: 3px;
+    color: #d7d7d7;
     `
 
     const Button = styled.button`
     padding:17px;
     cursor: pointer;
-    color:white;
-    background-color: #929292;
+    color:brown;
+    background-color: #7a948f;
     border-radius: 5px;
     border : none;
     font-size: 20px;
@@ -44,12 +44,12 @@ function Home() {
     text-decoration: none;
     
       &:hover{
-        background-color: #6d6d6d;
+        background-color: #99afab;
       }
     `
 
     const resumeData = useContext(ResumeContext);
-    console.log(resumeData);
+    //console.log(resumeData);
 
     return (
         <>
@@ -58,7 +58,7 @@ function Home() {
             <Wrapper>
                 <Body>
                     <P>Built free Resume Online with ResumeCraft</P>
-                    <Button><Link to="/templates" style={{ textDecoration: 'none', color:'white' }}>Built Here</Link></Button>
+                    <Button><Link to="/template" style={{ textDecoration: 'none', color:'white' }}>Built Here</Link></Button>
                 </Body>
             </Wrapper>
             <Footer/>

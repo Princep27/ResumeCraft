@@ -6,9 +6,12 @@ function Header() {
     const Header = styled.div`
         display: flex;
         width:100%;
-        height:60px;
+        height:55px;
         flex-direction: row;
-        background-color: rgb(223, 223, 223);
+        background-color:#678983;
+        top:0px;
+        z-index: 1  ;
+        position: sticky;
     `
 
     const First = styled.div`
@@ -19,7 +22,7 @@ function Header() {
     const Middle = styled.div`
         flex:1;
         justify-content: center;
-        font-size:35px;
+        font-size:30px;
         letter-spacing: 6px;
         font-weight: 550;
         display: flex;
@@ -29,7 +32,7 @@ function Header() {
         flex:1;
         flex-direction: row-reverse;
         padding-right:40px;
-        font-size: 20px;
+        font-size: 17px;
         font-weight: 600;
         cursor:pointer;
         display: flex;
@@ -37,20 +40,23 @@ function Header() {
     `
 
     const Img = styled.img`
-        height: 50px;
-        padding:10px;
+        height: 42px;
+        padding:8px;
     `
+
+    function handleClick(){
+        
+    }
 
     return (
         <Header>
             <First>
                 <Img src={Logo} alt=""/>
             </First>
-
+  
             <Middle>
                 ResumeCraft
             </Middle>
-
             <Last>
                 Contact Us
             </Last>

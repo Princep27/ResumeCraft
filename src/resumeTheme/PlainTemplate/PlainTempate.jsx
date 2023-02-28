@@ -25,13 +25,27 @@ function PlainTemplate(){
     font-size: 30px;
     `
 
+    const Text = styled.p   `
+    position: absolute;
+    right : 8px;
+    top : 35px;
+    font-size: large;
+    font-weight: 600;
+    color: #b1afaf;
+    visibility: hidden;
+    `   
+
     const Container = styled.div`   
         position:relative;
         :hover {
-            background-color: #ededed69;
+            background-color: #dfdede69;
         };
 
         &:hover ${Icon}{
+            visibility: visible;
+        }
+
+        &:hover ${Text}{
             visibility: visible;
         }
     `
@@ -59,7 +73,7 @@ function PlainTemplate(){
                                         <Draggable direction="vertical" key={Component.id} draggableId={Component.id.toString()} index={index} >
                                         {
                                             (provided)=>{
-                                                return (<Container  ref={provided.innerRef}  {...provided.draggableProps} ><Component.Name /><Icon {...provided.dragHandleProps}><RxDragHandleHorizontal /></Icon></Container>);
+                                                return (<Container  ref={provided.innerRef}  {...provided.draggableProps} ><Component.Name /><Icon {...provided.dragHandleProps}><RxDragHandleHorizontal /></Icon> <Text>Drag</Text></Container>);
                                             }
                                         }                                            
                                         </Draggable>

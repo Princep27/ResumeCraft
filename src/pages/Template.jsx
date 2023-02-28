@@ -3,13 +3,14 @@ import Footer from "../components/Footer/Footer";
 import styled from "styled-components";
 import Edit from "../components/Edit/Edit";
 import ResumeTheme from "../resumeTheme/PlainTemplate/PlainTempate";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import ReactToPrint from "react-to-print";
+import { useContext } from "react";
+import resumeContext from "../context/resumeContext";
 
 const Body = styled.div`
     height: auto;
     width: auto;
-   
 `
 
 const Wrapper = styled.div`
@@ -26,8 +27,12 @@ const Wrapper = styled.div`
 
 const Preview = styled.div`
     flex:3;
-    background-color: #d8d8d8;
-    height:100%;
+    background-color: #d0c9c9;
+    height:92vh;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+      width: 20px;
+    }
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,16 +44,38 @@ const ShowPreview = styled.div`
     background-color: #ffffff;
 `
 
+const Show = styled.div`
+    height: 100%;
+`
+
 const Button = styled.button`
 width:100px;
 height:30px;
 position: absolute;
-top:20px;
+top:15px;
 right:200px;
+z-index: 10;
+border-radius: 5px;
+border:none;
+cursor: pointer;
+background-color: #becbc9;
 `
 
 function Template(){
     const componentRef = useRef();
+    const resumeData = useContext(resumeContext);
+
+    setInterval(
+        ()=>localStorage.setItem("data",JSON.stringify(resumeData.state)),
+    3000);
+
+    useEffect(
+        ()=>{
+            if(localStorage.getItem("data") !== null){
+                resumeData.setState(JSON.parse(localStorage.getItem("data")));
+            }
+        },[]
+    )   
 
     return (
         <>
@@ -60,6 +87,7 @@ function Template(){
            <Body>
                <Wrapper>
                   <Preview>
+                    <Show>
                     <ShowPreview>
                         
                         <div ref={componentRef}>
@@ -67,12 +95,12 @@ function Template(){
                         </div>
                         
                     </ShowPreview>
+                    </Show>
                   </Preview>
                   
                   <Edit/>
                </Wrapper>
            </Body>
-           <Footer/>
         </>
     );
 }

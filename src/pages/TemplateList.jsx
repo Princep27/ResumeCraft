@@ -24,11 +24,11 @@ function TemplateList(){
     const Item = styled.div`
         height:350px;
         width:250px;
-        background-color: #d4d4d4;
+        background-color: #d0c9c9;
         cursor: pointer;
 
         &:hover{
-            background-color: #b8b8b8;
+            background-color: #d9d2d2;
         }
     `
 

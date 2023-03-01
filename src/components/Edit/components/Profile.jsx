@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
@@ -10,18 +10,35 @@ cursor: pointer;
 `
 
 const Wrapper = styled.div`
-    padding:10px;
+padding-top: 6px;
 `
 
 const Button = styled.span`
 cursor: pointer;
 `
 
+const Heading = styled.h3`
+cursor: pointer;
+letter-spacing: 2px;
+`
+
+const Section = styled.div`
+padding-top: 6px;
+`   
+
+const Input = styled.input`
+padding : 2px;
+margin : 1px;
+width: 250px;
+font-size: 14px;
+`
 
 function Profiles(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
+    const [isExpand,setIsExpand] = useState(false);
+
 
     function handleProfile(t,index){
         const temp = {...resumeData.state};
@@ -57,9 +74,9 @@ function Profiles(){
     }
 
     return (
-        <section>
+        <Section style={{"height" : isExpand ? "20px" : "auto", "overflow" : "hidden"}}>
 
-            <h3>Profiles</h3>
+            <Heading  onClick={()=>setIsExpand(!isExpand)} >Profiles</Heading>
 
             {                
                 <Wrapper>
@@ -67,8 +84,8 @@ function Profiles(){
                     resumeData.state.profiles.map((item,indx)=>{
                         return (
                           <>    
-                          <input type="text" name={`name xa${indx}`} value={item.name} autoFocus={focus[`xa${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
-                          <input type="text" name={`link xb${indx}`} value={item.link} autoFocus={focus[`xb${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
+                          <Input type="text" name={`name xa${indx}`} value={item.name} autoFocus={focus[`xa${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
+                          <Input type="text" name={`link xb${indx}`} value={item.link} autoFocus={focus[`xb${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
                           </>
                         );
                     })
@@ -80,7 +97,7 @@ function Profiles(){
                 </Wrapper>                                    
             } 
 
-        </section>
+        </Section>
     )
 }
 

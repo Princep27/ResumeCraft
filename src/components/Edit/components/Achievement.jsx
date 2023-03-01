@@ -1,26 +1,41 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
+const Section = styled.div``
 
 const Delete = styled.div`
 cursor: pointer;
 `
 
 const Wrapper = styled.div`
-    padding:10px;
+padding-top: 6px;
 `
 
 const Button = styled.span`
 cursor: pointer;
 `
 
+const Heading = styled.h3`
+    cursor: pointer;
+    letter-spacing: 2px;
+`
+
+const Input = styled.input`
+padding : 2px;
+margin : 1px;
+width: 250px;
+font-size: 14px;
+`
+
 function Achievement(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
+    const [isExpand,setIsExpand] = useState(false);
+
 
     function handleACH(t,index){
         const temp = {...resumeData.state};
@@ -56,16 +71,16 @@ function Achievement(){
     }
 
     return (
-        <section>
+        <Section style={{"height" : isExpand ? "20px" : "auto", "overflow" : "hidden"}}>
 
-            <h3>Achievements</h3>
+            <Heading  onClick={()=>setIsExpand(!isExpand)} >Achievements</Heading>
 
             {                
                 <Wrapper>
                 {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
                     resumeData.state.achievements.map((item,indx)=>{
-                        return (<input type="text" name={`achievement x${indx}`} value={item} autoFocus={focus[`x${indx}`]} onChange={e=>{handleACH(e,indx)}}/>);
+                        return (<Input type="text" name={`achievement x${indx}`} value={item} autoFocus={focus[`x${indx}`]} onChange={e=>{handleACH(e,indx)}}/>);
                     })
                 } 
                 <Button><BsPlusSquare onClick={handleAchievementListAdd} /></Button>
@@ -75,7 +90,7 @@ function Achievement(){
                 </Wrapper>                                    
             } 
 
-        </section>
+        </Section>
     )
 }
 

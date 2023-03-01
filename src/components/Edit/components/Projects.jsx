@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
 const Section = styled.div`
-    padding-bottom: 7px;
+    padding-bottom: 10px;
 `
 
 const Add = styled.div`
@@ -21,13 +21,28 @@ cursor: pointer;
 `
 
 const Wrapper = styled.div`
-    padding:10px;
+padding-top: 6px;
 `
 
-    function Projects(){
+const Heading = styled.h3`
+cursor: pointer;
+letter-spacing: 2px;
+`
+
+const Input = styled.input`
+padding : 2px;
+margin : 1px;
+width: 250px;
+font-size: 14px;
+`    
+
+
+function Projects(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
+    const [isExpand,setIsExpand] = useState(false);
+
 
     function handleP(t,index,aboutIndex){
         const temp = {...resumeData.state};
@@ -79,18 +94,18 @@ const Wrapper = styled.div`
     }
 
     return (
-        <section>
-            <h3>Projects</h3>
+        <Section style={{"height" : isExpand ? "15px" : "auto", "overflow" : "hidden"}}>
+            <Heading  onClick={()=>setIsExpand(!isExpand)} >Projects</Heading>
 
             {
                 resumeData.state.projects.map((item,index)=>{
                     return (
                         <Wrapper>
-                            <input type="text" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
-                            <input type="text" name={`link s${index}`} value={item.link} autoFocus={focus[`s${index}`]} onChange={e=>{handleP(e,index,0)}}/>
+                            <Input type="text" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
+                            <Input type="text" name={`link s${index}`} value={item.link} autoFocus={focus[`s${index}`]} onChange={e=>{handleP(e,index,0)}}/>
                             {
                                 item.about.map((item2,indx)=>{
-                                    return (<input type="text" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
+                                    return (<Input type="text" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
                                 })
                             }
 
@@ -103,7 +118,7 @@ const Wrapper = styled.div`
 
             <Add><BsPlusSquare onClick={handleAdd}/></Add>
             <Delete><AiFillDelete onClick={handleDelete}/></Delete>
-        </section>
+        </Section>
     )
 }
 

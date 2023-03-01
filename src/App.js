@@ -13,7 +13,7 @@ function App() {
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
-          <Route path="/templates" element={<TemplateList/>}></Route>
+          {/* <Route path="/templates" element={<TemplateList/>}></Route> */}
           <Route path="template" element={<Template/>}></Route>
         </Routes>
       </BrowserRouter>

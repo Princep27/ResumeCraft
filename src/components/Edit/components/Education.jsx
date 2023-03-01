@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState,useRef } from "react";
 import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
 const Section = styled.div`
-    padding-bottom: 7px;
+padding-top: 6px;
 `
 
 const Add = styled.div`
@@ -17,13 +17,27 @@ cursor: pointer;
 `
 
 const Wrapper = styled.div`
-    padding:10px;
+padding-top: 6px;
+`
+
+const Heading = styled.h3`
+cursor:pointer;
+letter-spacing: 2px;
+
+`
+
+const Input = styled.input`
+padding : 2px;
+margin : 1px;
+width: 250px;
+font-size: 14px;
 `
 
 function Education(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
+    const [isExpand,setIsExpand] = useState(false);
 
     //console.log(resumeData.state.education);
 
@@ -63,20 +77,24 @@ function Education(){
         resumeData.setState(temp);
     }
 
+    function handleClick(){
+        setIsExpand(!isExpand);
+    }
+
 
     return (
-        <Section>  
-            <h3>Education</h3>
+        <Section style={{"height" : isExpand ? "20px" : "auto", "overflow" : "hidden"}} >  
+            <Heading onClick={handleClick} >Education</Heading>
 
             {
                 resumeData.state.education.map((item,index)=>{
                     return (
-                        <Wrapper>
-                        <input type="text" name={`courseName e${index}`} value={item.courseName} autoFocus={focus[`e${index}`]}  onChange={e=>{handleED(e,index)}}/>
-                        <input type="text" name={`instituteName f${index}`} value={item.instituteName} autoFocus={focus[`f${index}`]}  onChange={e=>{handleED(e,index)}}/>
-                        <input type="text" name={`startDate g${index}`} value={item.startDate} autoFocus={focus[`g${index}`]}  onChange={e=>{handleED(e,index)}}/>
-                        <input type="text" name={`endDate h${index}`} value={item.endDate} autoFocus={focus[`h${index}`]} onChange={e=>{handleED(e,index)}}/>
-                        <input type="text" name={`grade i${index}`} value={item.grade} autoFocus={focus[`i${index}`]} onChange={e=>{handleED(e,index)}}/>
+                        <Wrapper style={{"height" : isExpand ? "0px" : "100%", "overflow" : "hidden"}} >
+                        <Input type="text" name={`courseName e${index}`} value={item.courseName} autoFocus={focus[`e${index}`]}  onChange={e=>{handleED(e,index)}}/>
+                        <Input type="text" name={`instituteName f${index}`} value={item.instituteName} autoFocus={focus[`f${index}`]}  onChange={e=>{handleED(e,index)}}/>
+                        <Input type="text" name={`startDate g${index}`} value={item.startDate} autoFocus={focus[`g${index}`]}  onChange={e=>{handleED(e,index)}}/>
+                        <Input type="text" name={`endDate h${index}`} value={item.endDate} autoFocus={focus[`h${index}`]} onChange={e=>{handleED(e,index)}}/>
+                        <Input type="text" name={`grade i${index}`} value={item.grade} autoFocus={focus[`i${index}`]} onChange={e=>{handleED(e,index)}}/>
                         </Wrapper>
                     )                           
                 })

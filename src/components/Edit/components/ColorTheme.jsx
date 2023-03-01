@@ -10,6 +10,7 @@ function ColorTheme(){
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 20px;
     `
 
     const Color = styled.div`
@@ -17,6 +18,10 @@ function ColorTheme(){
         width: 15px;
         margin: 2px;
         background-color: ${props=>props.color};
+    `
+
+    const Heading = styled.h3`
+        margin: 10px;
     `
 
     const resumeData = useContext(resumeContext);
@@ -29,6 +34,7 @@ function ColorTheme(){
     }
 
     return (<Input>
+        <Heading>Color</Heading>
         {
             colorArr.map(
                 (item)=> <Color color={item} onClick={(e)=>setColor(e,item)}></Color>

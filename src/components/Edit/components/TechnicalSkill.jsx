@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
 const Section = styled.div`
-    padding-bottom: 7px;
+padding-bottom: 10px;
 `
 
 const Add = styled.div`
@@ -17,11 +17,23 @@ cursor: pointer;
 `
 
 const Wrapper = styled.div`
-    padding:10px;
+padding-top: 6px;
 `
 
 const Button = styled.span`
 cursor: pointer;
+`
+
+const Heading = styled.h3`
+cursor: pointer;
+letter-spacing: 2px;
+`
+
+const Input = styled.input`
+padding : 2px;
+margin : 1px;
+width: 250px;
+font-size: 14px;
 `
 
 
@@ -29,6 +41,8 @@ function TechnicalSkill(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
+    const [isExpand,setIsExpand] = useState(false);
+
 
     function handleTS(t,index){
         const temp = {...resumeData.state};
@@ -69,16 +83,16 @@ function TechnicalSkill(){
     }
 
     return (
-        <section>
+        <Section style={{"height" : isExpand ? "15px" : "auto", "overflow" : "hidden"}}>
 
-            <h3>Teachnical Skill</h3>
+            <Heading  onClick={()=>setIsExpand(!isExpand)}>Teachnical Skill</Heading>
 
             {                
                 <Wrapper>
                 {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
                     resumeData.state.technicalSkill.skills.map((item,indx)=>{
-                        return (<input type="text" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
+                        return (<Input type="text" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
                     })
                 } 
                 <Button><BsPlusSquare onClick={handleAboutListAdd} /></Button>
@@ -87,7 +101,7 @@ function TechnicalSkill(){
                 <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
                 </Wrapper>                                    
             } 
-        </section>
+        </Section>
     )
 }
 

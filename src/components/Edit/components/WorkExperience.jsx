@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext,useEffect,useState } from "react";
 import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
 const Section = styled.div`
-    padding-bottom: 7px;
+    padding-bottom: 10px;
 `
 
 const Add = styled.div`
@@ -17,13 +17,27 @@ cursor: pointer;
 `
 
 const Wrapper = styled.div`
-    padding:10px;
+padding-top: 6px;
+`
+const Heading = styled.h3`
+cursor: pointer;
+letter-spacing: 2px;
+padding-top: 6px;
 `
 
-    function WorkExperience(){
+const Input = styled.input`
+padding : 2px;
+margin : 1px;
+width: 250px;
+font-size: 14px;
+`
+
+function WorkExperience(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
+    const [isExpand,setIsExpand] = useState(false);
+
 
     function handleWE(t,index,workIndex){
         const temp = {...resumeData.state};
@@ -67,20 +81,20 @@ const Wrapper = styled.div`
     }   
 
     return (
-        <section>
-        <h3>Work Experience</h3>
+        <Section style={{"height" : isExpand ? "20px" : "auto", "overflow" : "hidden"}}>
+        <Heading  onClick={()=>setIsExpand(!isExpand) }>Work Experience</Heading>
 
         {
             resumeData.state.experience.map((item,index)=>{
                 return (
                     <Wrapper>
-                    <input type="text" name={`position l${index}`} value={item.position} autoFocus={focus[`l${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
-                    <input type="text" name={`companyName m${index}`} value={item.companyName} autoFocus={focus[`m${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
-                    <input type="text" name={`startDate n${index}`} value={item.startDate} autoFocus={focus[`n${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
-                    <input type="text" name={`endDate o${index}`} value={item.endDate} autoFocus={focus[`o${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" name={`position l${index}`} value={item.position} autoFocus={focus[`l${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" name={`companyName m${index}`} value={item.companyName} autoFocus={focus[`m${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" name={`startDate n${index}`} value={item.startDate} autoFocus={focus[`n${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" name={`endDate o${index}`} value={item.endDate} autoFocus={focus[`o${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
                     {
                         item.work.map((item2,indx)=>{
-                            return (<input type="text" name={`work o${index}_${indx}`} value={item2} autoFocus={focus[`o${index}_${indx}`]} onChange={e=>{handleWE(e,index,indx)}}/>);
+                            return (<Input type="text" name={`work o${index}_${indx}`} value={item2} autoFocus={focus[`o${index}_${indx}`]} onChange={e=>{handleWE(e,index,indx)}}/>);
                         })
                     } 
                     </Wrapper>
@@ -90,7 +104,7 @@ const Wrapper = styled.div`
 
         <Add><BsPlusSquare onClick={handleAdd}/></Add>
         <Delete><AiFillDelete onClick={handleDelete}/></Delete>
-        </section>
+        </Section>
     )
 }
 

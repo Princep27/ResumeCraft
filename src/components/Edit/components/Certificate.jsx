@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
@@ -10,18 +10,34 @@ cursor: pointer;
 `
 
 const Wrapper = styled.div`
-    padding:10px;
 `
 
 const Button = styled.span`
 cursor: pointer;
 `
 
+const Section = styled.div`
+padding-top: 6px;
+`
+
+const Heading = styled.h3`
+cursor: pointer;
+letter-spacing: 2px;
+`
+
+const Input = styled.input`
+padding : 2px;
+margin : 1px;
+width: 250px;
+font-size: 14px;
+`
 
 function Certificates(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
+    const [isExpand,setIsExpand] = useState(false);
+
 
     function handleCertificates(t,index){
         const temp = {...resumeData.state};
@@ -57,9 +73,9 @@ function Certificates(){
     }
 
     return (
-        <section>
+        <Section style={{"height" : isExpand ? "20px" : "auto", "overflow" : "hidden" }}>
 
-            <h3>Certificate</h3>
+            <Heading  onClick={()=>setIsExpand(!isExpand)}>Certificate</Heading>
 
             {                
                 <Wrapper>
@@ -67,8 +83,8 @@ function Certificates(){
                     resumeData.state.certificates.map((item,indx)=>{
                         return (
                         <>
-                          <input type="text" name={`name ya${indx}`} value={item.name} autoFocus={focus[`ya${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
-                          <input type="text" name={`link yb${indx}`} value={item.link} autoFocus={focus[`yb${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
+                          <Input type="text" name={`name ya${indx}`} value={item.name} autoFocus={focus[`ya${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
+                          <Input type="text" name={`link yb${indx}`} value={item.link} autoFocus={focus[`yb${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
                         </>);
                     })
                 } 
@@ -79,7 +95,7 @@ function Certificates(){
                 </Wrapper>                                    
             }   
 
-        </section>
+        </Section>
     )
 }
 

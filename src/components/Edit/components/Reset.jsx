@@ -1,10 +1,25 @@
 import styled from "styled-components";
+import {GrPowerReset} from "react-icons/gr";
 import { useContext } from "react";
 import resumeContext from "../../../context/resumeContext";
 
 const Button = styled.button`
 padding: 4px 15px 4px 15px;
 cursor: pointer;
+position: absolute;
+top: 80px;
+right: 30px;
+width: 50px;
+height:30px;    
+padding:1px;
+border-radius: 4px;
+border: none;
+color: grey;
+
+ &:hover{
+    background-color:grey;
+    color : white;
+ }
 `
 
 function Reset(){

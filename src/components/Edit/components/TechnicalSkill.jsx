@@ -14,6 +14,9 @@ cursor: pointer;
 
 const Delete = styled.div`
 cursor: pointer;
+font-size: 24px;
+padding: 0px 4px 0px 3px;
+color: #c50909;
 `
 
 const Wrapper = styled.div`
@@ -24,16 +27,18 @@ const Button = styled.span`
 cursor: pointer;
 `
 
-const Heading = styled.h3`
+const Heading = styled.h2`
 cursor: pointer;
 letter-spacing: 2px;
 `
 
 const Input = styled.input`
-padding : 2px;
+padding : 7px;
 margin : 1px;
 width: 250px;
 font-size: 14px;
+border-radius: 5px;
+border: none;
 `
 
 
@@ -41,7 +46,7 @@ function TechnicalSkill(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
-    const [isExpand,setIsExpand] = useState(false);
+    const [isExpand,setIsExpand] = useState(true);
 
 
     function handleTS(t,index){
@@ -67,32 +72,44 @@ function TechnicalSkill(){
     function handleAboutListAdd(){
         const temp = {...resumeData.state};
         temp.technicalSkill.skills.push(" ");
+        
+        const focusId = `w${temp.technicalSkill.skills.length-1}`;
+        temp.focus = {};
+        temp.focus[focusId] = true;
+        
         resumeData.setState(temp);
     }
 
     function handleAboutListDelete(){
         const temp = {...resumeData.state};
         temp.technicalSkill.skills.pop();
+        
+        const focusId = `w${temp.technicalSkill.skills.length-1}`;
+        temp.focus = {};
+        temp.focus[focusId] = true;
+
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
         temp.technicalSkill.skills = [];
+        temp.focus = {};
+        temp.focus.r0 = true;
         resumeData.setState(temp);  
     }
 
     return (
         <Section style={{"height" : isExpand ? "15px" : "auto", "overflow" : "hidden"}}>
 
-            <Heading  onClick={()=>setIsExpand(!isExpand)}>Teachnical Skill</Heading>
+            <Heading  onClick={()=>setIsExpand(!isExpand)}>Technical Skill</Heading>
 
             {                
                 <Wrapper>
                 {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
                     resumeData.state.technicalSkill.skills.map((item,indx)=>{
-                        return (<Input type="text" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
+                        return (<Input type="text" placeholder="Skill" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
                     })
                 } 
                 <Button><BsPlusSquare onClick={handleAboutListAdd} /></Button>

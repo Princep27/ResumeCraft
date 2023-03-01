@@ -7,13 +7,15 @@ padding-top: 6px;
 `
 
 const Input = styled.input`
-padding : 2px;
+padding : 7px;
 margin : 1px;
 width: 250px;
 font-size: 14px;
+border-radius: 5px;
+border: none;
 `
 
-const Heading = styled.h3`
+const Heading = styled.h2`
 cursor: pointer;
 letter-spacing: 2px;
 `
@@ -25,7 +27,7 @@ function BasicDetail(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
-    const [isExpand,setIsExpand] = useState(false);
+    const [isExpand,setIsExpand] = useState(true);
 
     function handleBD(t){
         let temp = {...resumeData.state};

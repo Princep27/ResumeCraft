@@ -30,7 +30,7 @@ function ColorTheme(){
         const temp = {...resumeData.state};
         temp.themecolor = value;
         resumeData.setState(temp);    
-        localStorage.setItem("data",JSON.stringify(temp));    
+        // localStorage.setItem("data",JSON.stringify(temp));    
     }
 
     return (<Input>

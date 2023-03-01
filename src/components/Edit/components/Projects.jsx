@@ -10,10 +10,15 @@ const Section = styled.div`
 
 const Add = styled.div`
 cursor: pointer;
+color: #c50909;
+padding: 4px 4px 0px 6px;
 `
 
 const Delete = styled.div`
 cursor: pointer;
+font-size: 24px;
+color:#c50909;
+padding: 0px 4px 0px 3px;
 `
 
 const Button = styled.span`
@@ -24,24 +29,25 @@ const Wrapper = styled.div`
 padding-top: 6px;
 `
 
-const Heading = styled.h3`
+const Heading = styled.h2`
 cursor: pointer;
 letter-spacing: 2px;
 `
 
 const Input = styled.input`
-padding : 2px;
+padding : 7px;
 margin : 1px;
 width: 250px;
 font-size: 14px;
-`    
-
+border-radius: 5px;
+border: none;
+`   
 
 function Projects(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
-    const [isExpand,setIsExpand] = useState(false);
+    const [isExpand,setIsExpand] = useState(true);
 
 
     function handleP(t,index,aboutIndex){
@@ -72,24 +78,44 @@ function Projects(){
 
         const temp ={...resumeData.state};
         temp.projects.push(t);
+
+        temp.focus = {};
+        temp.focus[`r${temp.projects.length-1}`] = true;                    
+
         resumeData.setState(temp);
     }
 
     function handleDelete(){
         const temp = {...resumeData.state};
         temp.projects.pop();
+
+        temp.focus = {};
+
+        if( temp.projects.length)
+        temp.focus[`r${temp.projects.length-1}`] = true; 
+        else
+        temp.focus.l0 = true;
+
         resumeData.setState(temp);
     }   
 
     function handleAboutListAdd(index){
         const temp = {...resumeData.state};
         temp.projects[index].about.push(" ");
+
+        temp.focus = {};
+        temp.focus[`t${temp.projects.length-1}_${temp.projects[temp.projects.length-1].about.length-1}`] = true;
+
         resumeData.setState(temp);
     }
 
     function handleAboutListDelete(index){
         const temp = {...resumeData.state};
         temp.projects[index].about.pop();
+
+        temp.focus = {};
+        temp.focus[`t${temp.projects.length-1}_${temp.projects[temp.projects.length-1].about.length-1}`] = true;
+
         resumeData.setState(temp);
     }
 
@@ -101,11 +127,11 @@ function Projects(){
                 resumeData.state.projects.map((item,index)=>{
                     return (
                         <Wrapper>
-                            <Input type="text" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
-                            <Input type="text" name={`link s${index}`} value={item.link} autoFocus={focus[`s${index}`]} onChange={e=>{handleP(e,index,0)}}/>
+                            <Input type="text" placeholder="Title" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
+                            <Input type="text" placeholder="Link" name={`link s${index}`} value={item.link} autoFocus={focus[`s${index}`]} onChange={e=>{handleP(e,index,0)}}/>
                             {
                                 item.about.map((item2,indx)=>{
-                                    return (<Input type="text" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
+                                    return (<Input type="text" placeholder="About" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
                                 })
                             }
 

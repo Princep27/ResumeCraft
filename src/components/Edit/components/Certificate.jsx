@@ -7,6 +7,9 @@ import { AiFillDelete } from "react-icons/ai";
 
 const Delete = styled.div`
 cursor: pointer;
+color: #c50909;
+font-size: 25px;
+padding: 4px 4px 0px 6px;
 `
 
 const Wrapper = styled.div`
@@ -20,23 +23,25 @@ const Section = styled.div`
 padding-top: 6px;
 `
 
-const Heading = styled.h3`
+const Heading = styled.h2`
 cursor: pointer;
 letter-spacing: 2px;
 `
 
 const Input = styled.input`
-padding : 2px;
+padding : 7px;
 margin : 1px;
 width: 250px;
 font-size: 14px;
+border-radius: 5px;
+border: none;
 `
 
 function Certificates(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
-    const [isExpand,setIsExpand] = useState(false);
+    const [isExpand,setIsExpand] = useState(true);
 
 
     function handleCertificates(t,index){
@@ -57,23 +62,36 @@ function Certificates(){
     function handleCertificatesListAdd(){
         const temp = {...resumeData.state};
         temp.certificates.push({"name" : "", "link" : ""});
+
+        const focusId = `ya${temp.certificates.length-1}`;
+        temp.focus = {};
+        temp.focus[focusId] = true;
+
         resumeData.setState(temp);
     }
 
     function handleCertificatesListDelete(){
         const temp = {...resumeData.state};
         temp.certificates.pop();
+
+        const focusId = `ya${temp.certificates.length-1}`;
+        temp.focus = {};
+        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
         temp.certificates = [];
+        temp.focus = {};
+        temp.focus.xa0 = true;
+
+
         resumeData.setState(temp);  
     }
 
     return (
-        <Section style={{"height" : isExpand ? "20px" : "auto", "overflow" : "hidden" }}>
+        <Section style={{"height" : isExpand ? "22px" : "auto", "overflow" : "hidden" }}>
 
             <Heading  onClick={()=>setIsExpand(!isExpand)}>Certificate</Heading>
 
@@ -83,8 +101,8 @@ function Certificates(){
                     resumeData.state.certificates.map((item,indx)=>{
                         return (
                         <>
-                          <Input type="text" name={`name ya${indx}`} value={item.name} autoFocus={focus[`ya${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
-                          <Input type="text" name={`link yb${indx}`} value={item.link} autoFocus={focus[`yb${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
+                          <Input type="text" name={`name ya${indx}`} placeholder="Name" value={item.name} autoFocus={focus[`ya${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
+                          <Input type="text" name={`link yb${indx}`} placeholder="Link" value={item.link} autoFocus={focus[`yb${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
                         </>);
                     })
                 } 

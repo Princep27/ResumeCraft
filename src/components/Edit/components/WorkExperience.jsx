@@ -4,39 +4,49 @@ import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
+
 const Section = styled.div`
     padding-bottom: 10px;
 `
 
 const Add = styled.div`
 cursor: pointer;
+color: #c50909;
+padding: 4px 4px 0px 6px;
 `
 
 const Delete = styled.div`
 cursor: pointer;
+color: #c50909;
+font-size: 24px;
+padding: 0px 4px 0px 3px;
 `
 
 const Wrapper = styled.div`
 padding-top: 6px;
 `
-const Heading = styled.h3`
+const Heading = styled.h2`
 cursor: pointer;
 letter-spacing: 2px;
 padding-top: 6px;
 `
 
+const Button = styled.span``
+
 const Input = styled.input`
-padding : 2px;
+padding : 7px;
 margin : 1px;
 width: 250px;
 font-size: 14px;
+border-radius: 5px;
+border: none;
 `
 
 function WorkExperience(){
 
     const resumeData = useContext(resumeContext);
     const focus = resumeData.state.focus;
-    const [isExpand,setIsExpand] = useState(false);
+    const [isExpand,setIsExpand] = useState(true);
 
 
     function handleWE(t,index,workIndex){
@@ -65,20 +75,48 @@ function WorkExperience(){
                 "companyName" : "",
                 "startDate" : "",
                 "endDate" : "",
-                "work" : [
+                "work" : [ ""
                 ]
         };
 
         const temp ={...resumeData.state};
         temp.experience.push(t);
+
+        temp.foucs = {};
+        temp.focus[`l${temp.experience.length-1}`] = true;
+
         resumeData.setState(temp);
     }
 
     function handleDelete(){
         const temp = {...resumeData.state};
         temp.experience.pop();
+
+        temp.focus = {};
+        if(temp.experience.length)
+        temp.focus[`l${temp.experience.length-1}`]= true;
+        else
+        temp.focus.e0 = true;
+
         resumeData.setState(temp);
-    }   
+    }  
+    
+    function handleAboutListAdd(index){
+        const temp = {...resumeData.state};
+        temp.experience[index].work.push("");
+
+        temp.focus = {};
+        temp.focus[`o${index}_${temp.experience[index].work.length-1}`] = true;
+
+        resumeData.setState(temp);
+    }
+
+    function handleAboutListDelete(index){
+        const temp = {...resumeData.state};
+        temp.experience[index].work.pop();
+
+        resumeData.setState(temp);
+    }
 
     return (
         <Section style={{"height" : isExpand ? "20px" : "auto", "overflow" : "hidden"}}>
@@ -88,15 +126,17 @@ function WorkExperience(){
             resumeData.state.experience.map((item,index)=>{
                 return (
                     <Wrapper>
-                    <Input type="text" name={`position l${index}`} value={item.position} autoFocus={focus[`l${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
-                    <Input type="text" name={`companyName m${index}`} value={item.companyName} autoFocus={focus[`m${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
-                    <Input type="text" name={`startDate n${index}`} value={item.startDate} autoFocus={focus[`n${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
-                    <Input type="text" name={`endDate o${index}`} value={item.endDate} autoFocus={focus[`o${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" placeholder="Position" name={`position l${index}`} value={item.position} autoFocus={focus[`l${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" placeholder="Company Name" name={`companyName m${index}`} value={item.companyName} autoFocus={focus[`m${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" placeholder="Start Date" name={`startDate n${index}`} value={item.startDate} autoFocus={focus[`n${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
+                    <Input type="text" placeholder="End Date" name={`endDate o${index}`} value={item.endDate} autoFocus={focus[`o${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
                     {
                         item.work.map((item2,indx)=>{
-                            return (<Input type="text" name={`work o${index}_${indx}`} value={item2} autoFocus={focus[`o${index}_${indx}`]} onChange={e=>{handleWE(e,index,indx)}}/>);
+                            return (<Input type="text" placeholder="Work" name={`work o${index}_${indx}`} value={item2} autoFocus={focus[`o${index}_${indx}`]} onChange={e=>{handleWE(e,index,indx)}}/>);
                         })
                     } 
+                    <Button><BsPlusSquare onClick={()=>handleAboutListAdd(index)} /></Button>
+                    <Button><AiFillDelete onClick={()=>handleAboutListDelete(index)} /></Button>
                     </Wrapper>
                 )                           
             })

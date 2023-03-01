@@ -63,19 +63,30 @@ background-color: #becbc9;
 
 function Template(){
     const componentRef = useRef();
-    const resumeData = useContext(resumeContext);
+    //const resumeData = useContext(resumeContext);
 
-    setInterval(
-        ()=>localStorage.setItem("data",JSON.stringify(resumeData.state)),
-    3000);
+    // setInterval(
+    //     ()=>localStorage.setItem("data",JSON.stringify(resumeData.state)),
+    // 3000);
 
-    useEffect(
-        ()=>{
-            if(localStorage.getItem("data") !== null){
-                resumeData.setState(JSON.parse(localStorage.getItem("data")));
-            }
-        },[]
-    )   
+    // useEffect(
+    //     ()=>{
+    //         if(localStorage.getItem("data") !== null){
+    //             resumeData.setState(JSON.parse(localStorage.getItem("data")));
+    //         }
+    //     },[]
+    // )   
+
+    useEffect(() => {
+        const unloadCallback = (event) => {
+          event.preventDefault();
+          event.returnValue = "";
+          return "";
+        };
+      
+        window.addEventListener("beforeunload", unloadCallback);
+        return () => window.removeEventListener("beforeunload", unloadCallback);
+      }, []);
 
     return (
         <>

@@ -11,8 +11,7 @@ import {RxDragHandleHorizontal} from "react-icons/rx";
 import { useState } from "react";
 import { DragDropContext,Droppable,Draggable } from "react-beautiful-dnd";
 
-function PlainTemplate(){                   
-    const Wrapper = styled.div`
+const Wrapper = styled.div`
         height:100%;
         width:100%;
     `
@@ -49,7 +48,8 @@ function PlainTemplate(){
             visibility: visible;
         }
     `
-     
+
+function PlainTemplate(){                        
     const [arr,setArr] = useState([{Name:BasicDetail, id:0}, {Name:Education, id:1}, {Name:WorkExperience, id:2} ,{Name:Projects, id:3}, {Name:TechnicalSkill,id:4}, {Name:Achievement,id:5},{Name:Profiles,id:6},{Name:Certificates,id:7}]);
 
     function handleDragEnd(result){

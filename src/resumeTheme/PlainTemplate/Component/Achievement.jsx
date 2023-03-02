@@ -33,8 +33,8 @@ function Achievement(){
             {resumeData.state.achievements.length ? <hr></hr> : ""}
 
             {
-                resumeData.state.achievements.map((item)=>{
-                    return <Achieve>{item}</Achieve>
+                resumeData.state.achievements.map((item,index)=>{
+                    return <Achieve key={index}>{item}</Achieve>
                 })
             }   
         </Wrapper>

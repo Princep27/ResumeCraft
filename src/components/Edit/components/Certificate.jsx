@@ -100,10 +100,10 @@ function Certificates(){
                 {
                     resumeData.state.certificates.map((item,indx)=>{
                         return (
-                        <>
-                          <Input type="text" name={`name ya${indx}`} placeholder="Name" value={item.name} autoFocus={focus[`ya${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
+                        <div key={indx}>
+                          <Input type="text"  name={`name ya${indx}`} placeholder="Name" value={item.name} autoFocus={focus[`ya${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
                           <Input type="text" name={`link yb${indx}`} placeholder="Link" value={item.link} autoFocus={focus[`yb${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
-                        </>);
+                        </div>);
                     })
                 } 
                 <Button><BsPlusSquare onClick={handleCertificatesListAdd} /></Button>

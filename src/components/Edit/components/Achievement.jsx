@@ -99,7 +99,7 @@ function Achievement(){
                 {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
                     resumeData.state.achievements.map((item,indx)=>{
-                        return (<Input type="text" name={`achievement x${indx}`} value={item} autoFocus={focus[`x${indx}`]} onChange={e=>{handleACH(e,indx)}}/>);
+                        return (<Input type="text" key={indx} name={`achievement x${indx}`} value={item} autoFocus={focus[`x${indx}`]} onChange={e=>{handleACH(e,indx)}}/>);
                     })
                 } 
                 <Button><BsPlusSquare onClick={handleAchievementListAdd} /></Button>

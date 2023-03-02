@@ -126,12 +126,12 @@ function Projects(){
             {
                 resumeData.state.projects.map((item,index)=>{
                     return (
-                        <Wrapper>
+                        <Wrapper key={index} >
                             <Input type="text" placeholder="Title" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
                             <Input type="text" placeholder="Link" name={`link s${index}`} value={item.link} autoFocus={focus[`s${index}`]} onChange={e=>{handleP(e,index,0)}}/>
                             {
                                 item.about.map((item2,indx)=>{
-                                    return (<Input type="text" placeholder="About" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
+                                    return (<Input key={indx} type="text" placeholder="About" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
                                 })
                             }
 

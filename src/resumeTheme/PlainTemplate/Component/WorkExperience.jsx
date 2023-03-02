@@ -72,7 +72,7 @@ function WorkExperience(){
             {
                 resumeData.state.experience.map((item,index)=>{
                     return (
-                        <Section>
+                        <Section key={index}>
                            <Position>{item.position}</Position>
                            <Dash>  |  </Dash>
                            <CompanyName>{item.companyName}</CompanyName>
@@ -85,7 +85,7 @@ function WorkExperience(){
 
                            {
                               resumeData.state.experience[index].work.map((itm,idx)=>{
-                                return <Work>{itm}</Work>
+                                return <Work key={idx}>{itm}</Work>
                               })
                            }
                         </Section>

@@ -108,7 +108,7 @@ function Education(){
             {
                 resumeData.state.education.map((item,index)=>{
                     return (
-                        <Wrapper style={{"height" : isExpand ? "0px" : "100%", "overflow" : "hidden"}} >
+                        <Wrapper key={index} style={{"height" : isExpand ? "0px" : "100%", "overflow" : "hidden"}} >
                         <Input type="text" placeholder="Course Name" name={`courseName e${index}`} value={item.courseName} autoFocus={focus[`e${index}`]}  onChange={e=>{handleED(e,index)}}/>
                         <Input type="text" placeholder="Institute Name" name={`instituteName f${index}`} value={item.instituteName} autoFocus={focus[`f${index}`]}  onChange={e=>{handleED(e,index)}}/>
                         <Input type="text" placeholder="Start Date" name={`startDate g${index}`} value={item.startDate} autoFocus={focus[`g${index}`]}  onChange={e=>{handleED(e,index)}}/>

@@ -73,7 +73,7 @@ function Education(){
             {
                 resumeData.state.education.map((item,index)=>{
                     return (
-                        <Section>
+                        <Section key={index}>
                            <CourseName>{item.courseName}</CourseName>
                            <InstituteName>{item.instituteName}</InstituteName>
                            <StartDate>{item.startDate}</StartDate>

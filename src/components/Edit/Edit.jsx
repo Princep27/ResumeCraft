@@ -11,27 +11,28 @@ import Certificates from "./components/Certificate";
 import Reset from "./components/Reset";
 import ColorTheme from "./components/ColorTheme";
 
-function Edit(){
-    const EditOptions = styled.div`
+const EditOptions = styled.div`
     height: 100%;
     width:300px;
     `
 
-    const Edit = styled.div`
-    flex:1;
-    background-color: #ddd6d6;
-    height: calc(100vh - 60px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: auto;
-    ::-webkit-scrollbar {
-    width: 20px;
-    }
-    `
+const Eedit = styled.div`
+flex:1;
+background-color: #e0e8e6;
+height: calc(100vh - 60px);
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: auto;
+::-webkit-scrollbar {
+width: 20px;
+}
+`
+
+function Edit(){
 
     return (
-        <Edit>
+        <Eedit>
             <EditOptions>
                 
                 <Reset/>
@@ -46,7 +47,7 @@ function Edit(){
                 <Certificates/>
                 
             </EditOptions>
-        </Edit>
+        </Eedit>
     );
 }   
 

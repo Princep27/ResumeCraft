@@ -4,9 +4,7 @@ import styled from "styled-components";
 
 const colorArr = ["#0053c6","#804674","#EB455F","#22A39F","#609966","#DC5F00","#3795BD","#594545","#B7B78A"];
 
-function ColorTheme(){
-
-    const Input =styled.div`
+const Input =styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
@@ -24,6 +22,8 @@ function ColorTheme(){
         margin: 10px;
     `
 
+
+function ColorTheme(){
     const resumeData = useContext(resumeContext);
 
     function setColor(e,value){
@@ -37,7 +37,7 @@ function ColorTheme(){
         <Heading>Color</Heading>
         {
             colorArr.map(
-                (item)=> <Color color={item} onClick={(e)=>setColor(e,item)}></Color>
+                (item,index)=> <Color key={index} color={item} onClick={(e)=>setColor(e,item)}></Color>
             )
         }
     </Input>);

@@ -102,10 +102,10 @@ function Profiles(){
                 {
                     resumeData.state.profiles.map((item,indx)=>{
                         return (
-                          <>    
+                          <div key={indx}>    
                           <Input type="text" name={`name xa${indx}`} placeholder="Platform" value={item.name} autoFocus={focus[`xa${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
                           <Input type="text" name={`link xb${indx}`} placeholder="Profile Link" value={item.link} autoFocus={focus[`xb${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
-                          </>
+                          </div>
                         );
                     })
                 } 

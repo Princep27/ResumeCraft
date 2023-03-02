@@ -39,10 +39,10 @@ function Profiles(){
             {resumeData.state.profiles.length ? <hr></hr> :  ""}
             <FlexBox>
             {
-                resumeData.state.profiles.map((item)=>{
-                    return <>
-                       <P>{item.name} {item.link ? <a href={item.link} target="_blank" rel="noreferrer" style={{"text-decoration" : "none"}}> <AiOutlineLink style={{"cursor":"pointer"}}/> </a>: ""}</P> 
-                    </>
+                resumeData.state.profiles.map((item,index)=>{
+                    return <span key={index}>
+                       <P>{item.name} {item.link ? <a href={item.link} target="_blank" rel="noreferrer" style={{"text-decoration" : "none"}}> <AiOutlineLink style={{"cursor":"pointer","color": resumeData.state.themecolor}}/> </a>: ""}</P> 
+                    </span>
                 })
             }   
             </FlexBox>

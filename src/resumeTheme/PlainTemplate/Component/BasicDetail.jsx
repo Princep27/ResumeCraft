@@ -50,6 +50,7 @@ const Line = styled.hr`
 
 const Icon = styled.div`
 font-size: 19px;
+color: ${(props) => props.color}
 `
 
 const Summary = styled.p`
@@ -73,8 +74,8 @@ function BasicDetail(){
                     <Email>{Data.state.basicDetail.email}</Email>
                     <Icon><IoCall/></Icon>
                     <Contact>{Data.state.basicDetail.contact}</Contact>
-                    <a href={Data.state.basicDetail.linkedin} target="_blank" rel="noreferrer"><Icon><AiOutlineLinkedin/></Icon></a>
-                    <a href={Data.state.basicDetail.github} target="_blank" rel="noreferrer"><Icon><AiFillGithub/></Icon></a>
+                    <a href={Data.state.basicDetail.linkedin} target="_blank" rel="noreferrer"><Icon color={Data.state.themecolor}><AiOutlineLinkedin/></Icon></a>
+                    <a href={Data.state.basicDetail.github} target="_blank" rel="noreferrer"><Icon color={Data.state.themecolor}><AiFillGithub/></Icon></a>
                 </PersonalDetail>
                 <Address><MdLocationOn/>{Data.state.basicDetail.address}</Address> 
             </Wrapper>

@@ -38,8 +38,8 @@ function Certificates(){
             
             <FlexBox>
             {
-                resumeData.state.certificates.map((item)=>{
-                    return <Item>{item.name} {item.link ? <a href={item.link} target="_blank" rel="noreferrer" style={{"text-decoration" : "none"}}> <AiOutlineLink style={{"cursor":"pointer"}}/> </a>: ""} </Item>
+                resumeData.state.certificates.map((item,index)=>{
+                    return <Item key={index}>{item.name} {item.link ? <a href={item.link} target="_blank" rel="noreferrer" style={{"text-decoration" : "none", "color": resumeData.state.themecolor}}> <AiOutlineLink style={{"cursor":"pointer"}}/> </a>: ""} </Item>
                 })
             }   
             </FlexBox>

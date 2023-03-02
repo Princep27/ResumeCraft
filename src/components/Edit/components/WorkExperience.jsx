@@ -125,14 +125,14 @@ function WorkExperience(){
         {
             resumeData.state.experience.map((item,index)=>{
                 return (
-                    <Wrapper>
+                    <Wrapper key={index}>
                     <Input type="text" placeholder="Position" name={`position l${index}`} value={item.position} autoFocus={focus[`l${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
                     <Input type="text" placeholder="Company Name" name={`companyName m${index}`} value={item.companyName} autoFocus={focus[`m${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
                     <Input type="text" placeholder="Start Date" name={`startDate n${index}`} value={item.startDate} autoFocus={focus[`n${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
                     <Input type="text" placeholder="End Date" name={`endDate o${index}`} value={item.endDate} autoFocus={focus[`o${index}`]} onChange={e=>{handleWE(e,index,0)}}/>
                     {
                         item.work.map((item2,indx)=>{
-                            return (<Input type="text" placeholder="Work" name={`work o${index}_${indx}`} value={item2} autoFocus={focus[`o${index}_${indx}`]} onChange={e=>{handleWE(e,index,indx)}}/>);
+                            return (<Input key={indx} type="text" placeholder="Work" name={`work o${index}_${indx}`} value={item2} autoFocus={focus[`o${index}_${indx}`]} onChange={e=>{handleWE(e,index,indx)}}/>);
                         })
                     } 
                     <Button><BsPlusSquare onClick={()=>handleAboutListAdd(index)} /></Button>

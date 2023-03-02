@@ -100,7 +100,7 @@ function TechnicalSkill(){
     }
 
     return (
-        <Section style={{"height" : isExpand ? "15px" : "auto", "overflow" : "hidden"}}>
+        <Section  style={{"height" : isExpand ? "15px" : "auto", "overflow" : "hidden"}}>
 
             <Heading  onClick={()=>setIsExpand(!isExpand)}>Technical Skill</Heading>
 
@@ -109,7 +109,7 @@ function TechnicalSkill(){
                 {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
                     resumeData.state.technicalSkill.skills.map((item,indx)=>{
-                        return (<Input type="text" placeholder="Skill" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
+                        return (<Input key={indx} type="text" placeholder="Skill" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
                     })
                 } 
                 <Button><BsPlusSquare onClick={handleAboutListAdd} /></Button>

@@ -47,11 +47,11 @@ function Projects(){
             {
                 resumeData.state.projects.map((item,index)=>{
                     return (
-                        <Section>
-                           <Title>{item.title} {item.link ? <a href={item.link} target="_blank" rel="noreferrer" style={{"text-decoration" : "none"}}> <AiOutlineLink style={{"cursor":"pointer"}}/> </a>: ""} </Title>
+                        <Section key={index}>
+                           <Title>{item.title} {item.link ? <a href={item.link} target="_blank" rel="noreferrer" style={{"text-decoration" : "none"}}> <AiOutlineLink style={{"cursor":"pointer","color": resumeData.state.themecolor}}/> </a>: ""} </Title>
                            {
                                 item.about.map((itm,idx)=>{
-                                return <About>{itm}</About>
+                                return <About key={idx}>{itm}</About>
                               })
                            }
                         </Section>

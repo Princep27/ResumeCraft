@@ -55,8 +55,8 @@ function TechnicalSkill(){
             
             <FlexBox>
             {
-                resumeData.state.technicalSkill.skills.map((item)=>{
-                    return <Skill>{item}</Skill>
+                resumeData.state.technicalSkill.skills.map((item,index)=>{
+                    return <Skill key={index}>{item}</Skill>
                 })
             }   
             </FlexBox>

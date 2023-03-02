@@ -9,17 +9,15 @@ const Section = styled.div`
     padding-bottom: 10px;
 `
 
-const Add = styled.div`
+const Add = styled.span`
 cursor: pointer;
 color: #c50909;
-padding: 4px 4px 0px 6px;
 `
 
-const Delete = styled.div`
+const Delete = styled.span`
 cursor: pointer;
 color: #c50909;
-font-size: 24px;
-padding: 0px 4px 0px 3px;
+font-size: 20px;
 `
 
 const Wrapper = styled.div`
@@ -135,15 +133,18 @@ function WorkExperience(){
                             return (<Input key={indx} type="text" placeholder="Work" name={`work o${index}_${indx}`} value={item2} autoFocus={focus[`o${index}_${indx}`]} onChange={e=>{handleWE(e,index,indx)}}/>);
                         })
                     } 
+                    <div>
                     <Button><BsPlusSquare onClick={()=>handleAboutListAdd(index)} /></Button>
                     <Button><AiFillDelete onClick={()=>handleAboutListDelete(index)} /></Button>
+                    </div>
                     </Wrapper>
                 )                           
             })
         } 
-
-        <Add><BsPlusSquare onClick={handleAdd}/></Add>
-        <Delete><AiFillDelete onClick={handleDelete}/></Delete>
+         
+        <div><Add><BsPlusSquare onClick={handleAdd}/></Add>
+        <Delete><AiFillDelete onClick={handleDelete}/></Delete></div>
+        
         </Section>
     )
 }

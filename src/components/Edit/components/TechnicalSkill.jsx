@@ -14,8 +14,7 @@ cursor: pointer;
 
 const Delete = styled.div`
 cursor: pointer;
-font-size: 24px;
-padding: 0px 4px 0px 3px;
+font-size: 20px;
 color: #c50909;
 `
 
@@ -112,8 +111,12 @@ function TechnicalSkill(){
                         return (<Input key={indx} type="text" placeholder="Skill" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
                     })
                 } 
-                <Button><BsPlusSquare onClick={handleAboutListAdd} /></Button>
-                <Button><AiFillDelete onClick={handleAboutListDelete} /></Button>
+
+                <div>
+                    <Button><BsPlusSquare onClick={handleAboutListAdd} /></Button>
+                    <Button><AiFillDelete onClick={handleAboutListDelete} /></Button>
+                </div>
+
 
                 <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
                 </Wrapper>                                    

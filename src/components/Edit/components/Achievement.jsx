@@ -9,8 +9,7 @@ const Section = styled.div``
 const Delete = styled.div`
 cursor: pointer;
 color: #c50909;
-font-size: 25px;
-padding: 4px 4px 0px 4px;
+font-size: 20px;
 `
 
 const Wrapper = styled.div`
@@ -102,8 +101,11 @@ function Achievement(){
                         return (<Input type="text" key={indx} name={`achievement x${indx}`} value={item} autoFocus={focus[`x${indx}`]} onChange={e=>{handleACH(e,indx)}}/>);
                     })
                 } 
-                <Button><BsPlusSquare onClick={handleAchievementListAdd} /></Button>
-                <Button><AiFillDelete onClick={handleAchievementListDelete} /></Button>
+                <div>
+                    <Button><BsPlusSquare onClick={handleAchievementListAdd} /></Button>
+                    <Button><AiFillDelete onClick={handleAchievementListDelete} /></Button>
+                </div>
+                
 
                 <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
                 </Wrapper>                                    

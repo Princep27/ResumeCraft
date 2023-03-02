@@ -8,17 +8,15 @@ const Section = styled.div`
     padding-bottom: 10px;
 `
 
-const Add = styled.div`
+const Add = styled.span`
 cursor: pointer;
 color: #c50909;
-padding: 4px 4px 0px 6px;
 `
 
-const Delete = styled.div`
+const Delete = styled.span`
 cursor: pointer;
-font-size: 24px;
+font-size: 20px;
 color:#c50909;
-padding: 0px 4px 0px 3px;
 `
 
 const Button = styled.span`
@@ -135,15 +133,21 @@ function Projects(){
                                 })
                             }
 
-                            <Button><BsPlusSquare onClick={()=>handleAboutListAdd(index)} /></Button>
-                            <Button><AiFillDelete onClick={()=>handleAboutListDelete(index)} /></Button>
+                            <div>
+                                <Button><BsPlusSquare onClick={()=>handleAboutListAdd(index)} /></Button>
+                                <Button><AiFillDelete onClick={()=>handleAboutListDelete(index)} /></Button>
+                            </div>
+                            
                         </Wrapper>
                     )                           
                 })
             } 
 
-            <Add><BsPlusSquare onClick={handleAdd}/></Add>
-            <Delete><AiFillDelete onClick={handleDelete}/></Delete>
+            <div>
+                <Add><BsPlusSquare onClick={handleAdd}/></Add>
+                <Delete><AiFillDelete onClick={handleDelete}/></Delete>
+            </div>
+            
         </Section>
     )
 }

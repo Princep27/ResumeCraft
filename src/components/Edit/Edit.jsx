@@ -17,14 +17,14 @@ const EditOptions = styled.div`
     `
 
 const Eedit = styled.div`
-flex:1;
+width:350px;
 background-color: #e0e8e6;
 height: calc(100vh - 60px);
 display: flex;
 justify-content: center;
 align-items: center;
 overflow-y: auto;
-overflow-x: visible;
+overflow-x: scroll;
 ::-webkit-scrollbar {
 width: 20px;
 }

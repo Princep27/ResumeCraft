@@ -5,11 +5,19 @@ import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
 
-const Delete = styled.div`
+const Delete = styled.button`
+display: block;
 cursor: pointer;
-font-size: 24px;
-padding: 3px 4px 0px 4px;
-color:#c50909;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+    &:hover{
+        background-color: #f43c3c;
+    }
 `
 
 const Wrapper = styled.div`
@@ -112,7 +120,7 @@ function Profiles(){
                 <Button><BsPlusSquare onClick={handleProfileListAdd} /></Button>
                 <Button><AiFillDelete onClick={handleProfileListDelete} /></Button>
 
-                <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
+                <Delete  onClick={deleteAll}>Delete All</Delete>
                 </Wrapper>                                    
             } 
 

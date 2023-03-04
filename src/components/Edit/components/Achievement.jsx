@@ -4,12 +4,22 @@ import resumeContext from "../../../context/resumeContext";
 import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
-const Section = styled.div``
+const Section = styled.div`
 
-const Delete = styled.div`
+`
+
+const Delete = styled.button`
 cursor: pointer;
-color: #c50909;
-font-size: 20px;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+&:hover{
+    background-color: #e39191;
+}
 `
 
 const Wrapper = styled.div`
@@ -107,7 +117,7 @@ function Achievement(){
                 </div>
                 
 
-                <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
+                <Delete  onClick={deleteAll}>Delete All</Delete>
                 </Wrapper>                                    
             } 
 

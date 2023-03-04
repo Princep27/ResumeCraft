@@ -9,15 +9,33 @@ const Section = styled.div`
     padding-bottom: 10px;
 `
 
-const Add = styled.span`
+const Add = styled.button`
 cursor: pointer;
-color: #c50909;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+margin-right: 10px;
+&:hover{
+    background-color: #f43c3c;
+}
 `
 
-const Delete = styled.span`
+const Delete = styled.button`
 cursor: pointer;
-color: #c50909;
-font-size: 20px;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+&:hover{
+    background-color: #f43c3c;
+}
 `
 
 const Wrapper = styled.div`
@@ -142,8 +160,8 @@ function WorkExperience(){
             })
         } 
          
-        <div><Add><BsPlusSquare onClick={handleAdd}/></Add>
-        <Delete><AiFillDelete onClick={handleDelete}/></Delete></div>
+        <div><Add onClick={handleAdd}>Add</Add>
+        <Delete onClick={handleDelete}>Delete</Delete></div>
         
         </Section>
     )

@@ -17,8 +17,8 @@ border: none;
 color: grey;
 
  &:hover{
-    background-color:grey;
-    color : white;
+    background-color:red;
+    color : #eeeeee;
  }
 `
 

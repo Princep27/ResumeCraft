@@ -5,11 +5,20 @@ import { BsPlusSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
 
-const Delete = styled.div`
+const Delete = styled.button`
+display: block;
 cursor: pointer;
-color: #c50909;
-font-size: 25px;
-padding: 4px 4px 0px 6px;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+margin-bottom: 20px;
+    &:hover{
+        background-color: #f43c3c;
+    }
 `
 
 const Wrapper = styled.div`
@@ -109,7 +118,7 @@ function Certificates(){
                 <Button><BsPlusSquare onClick={handleCertificatesListAdd} /></Button>
                 <Button><AiFillDelete onClick={handleCertificatesListDelete} /></Button>
 
-                <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
+                <Delete  onClick={deleteAll}>Delete All</Delete>
                 </Wrapper>                                    
             }   
 

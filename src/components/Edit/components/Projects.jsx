@@ -10,13 +10,31 @@ const Section = styled.div`
 
 const Add = styled.span`
 cursor: pointer;
-color: #c50909;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+margin-right: 10px;
+&:hover{
+    background-color: #f43c3c;
+}
 `
 
-const Delete = styled.span`
+const Delete = styled.button`
 cursor: pointer;
-font-size: 20px;
-color:#c50909;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+    &:hover{
+        background-color: #f43c3c;
+    }
 `
 
 const Button = styled.span`
@@ -144,8 +162,8 @@ function Projects(){
             } 
 
             <div>
-                <Add><BsPlusSquare onClick={handleAdd}/></Add>
-                <Delete><AiFillDelete onClick={handleDelete}/></Delete>
+                <Add onClick={handleAdd}>New</Add>
+                <Delete onClick={handleDelete}>Delete</Delete>
             </div>
             
         </Section>

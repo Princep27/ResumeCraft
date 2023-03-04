@@ -8,14 +8,18 @@ const Section = styled.div`
 padding-bottom: 10px;
 `
 
-const Add = styled.div`
+const Delete = styled.button`
 cursor: pointer;
-`
-
-const Delete = styled.div`
-cursor: pointer;
-font-size: 20px;
-color: #c50909;
+color: #ffffff;
+font-size: 12px;
+padding:3px;
+border:none;
+background-color: #e39191;
+border-radius: 4px;
+margin-top: 10px;
+&:hover{
+    background-color: #f43c3c;
+}
 `
 
 const Wrapper = styled.div`
@@ -118,7 +122,7 @@ function TechnicalSkill(){
                 </div>
 
 
-                <Delete  onClick={deleteAll}><AiFillDelete/></Delete>
+                <Delete  onClick={deleteAll}>Delete All</Delete>
                 </Wrapper>                                    
             } 
         </Section>

@@ -23,7 +23,8 @@ height: calc(100vh - 60px);
 display: flex;
 justify-content: center;
 align-items: center;
-overflow: auto;
+overflow-y: auto;
+overflow-x: visible;
 ::-webkit-scrollbar {
 width: 20px;
 }

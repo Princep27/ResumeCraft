@@ -17,7 +17,7 @@ const EditOptions = styled.div`
     `
 
 const Eedit = styled.div`
-width:350px;
+flex:1;
 background-color: #e0e8e6;
 height: calc(100vh - 60px);
 display: flex;

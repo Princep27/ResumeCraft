@@ -26,7 +26,8 @@ const Wrapper = styled.div`
 `
 
 const Preview = styled.div`
-    flex:3;
+    flex: 3;
+    min-width: 210mm;
     background-color: #d0c9c9;
     height:92vh;
     overflow-y: auto;

@@ -28,7 +28,7 @@ padding-left: 15px;
 const FlexBox = styled.div`
     justify-content: center;
 `
-
+//temp
 
 function Profiles(){
     const resumeData = useContext(resumeContext);
@@ -46,7 +46,6 @@ function Profiles(){
                 })
             }   
             </FlexBox>
-            
         </Wrapper>
     )
 }

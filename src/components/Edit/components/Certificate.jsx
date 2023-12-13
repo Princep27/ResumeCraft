@@ -49,53 +49,33 @@ border: none;
 function Certificates(){
 
     const resumeData = useContext(resumeContext);
-    const focus = resumeData.state.focus;
     const [isExpand,setIsExpand] = useState(true);
 
 
     function handleCertificates(t,index){
         const temp = {...resumeData.state};
-        let name = t.target.name.split(" ")[0];
-
-       
-        let focusId = t.target.name.split(" ")[1];
+        let name = t.target.name;
         let value = t.target.value;
 
         temp.certificates[index][name] = value;
-
-        temp.focus = {};
-        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
     function handleCertificatesListAdd(){
         const temp = {...resumeData.state};
         temp.certificates.push({"name" : "", "link" : ""});
-
-        const focusId = `ya${temp.certificates.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
-
         resumeData.setState(temp);
     }
 
     function handleCertificatesListDelete(){
         const temp = {...resumeData.state};
         temp.certificates.pop();
-
-        const focusId = `ya${temp.certificates.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
         temp.certificates = [];
-        temp.focus = {};
-        temp.focus.xa0 = true;
-
-
         resumeData.setState(temp);  
     }
 
@@ -110,8 +90,8 @@ function Certificates(){
                     resumeData.state.certificates.map((item,indx)=>{
                         return (
                         <div key={indx}>
-                          <Input type="text"  name={`name ya${indx}`} placeholder="Name" value={item.name} autoFocus={focus[`ya${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
-                          <Input type="text" name={`link yb${indx}`} placeholder="Link" value={item.link} autoFocus={focus[`yb${indx}`]} onChange={e=>{handleCertificates(e,indx)}}/>
+                          <Input type="text"  name="name" placeholder="Name" value={item.name} onChange={e=>{handleCertificates(e,indx)}}/>
+                          <Input type="text" name="link" placeholder="Link" value={item.link} onChange={e=>{handleCertificates(e,indx)}}/>
                         </div>);
                     })
                 } 

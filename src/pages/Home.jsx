@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Image from "../images/bg.jpeg";
-import { useContext } from "react";
-import ResumeContext from "../context/resumeContext";
 
 function Home() {
 
@@ -47,8 +45,6 @@ function Home() {
         background-color: #99afab;
       }
     `
-
-    const resumeData = useContext(ResumeContext);
     //console.log(resumeData);
 
     return (

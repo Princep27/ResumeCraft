@@ -74,8 +74,12 @@ function BasicDetail(){
                     <Email>{Data.state.basicDetail.email}</Email>
                     <Icon><IoCall/></Icon>
                     <Contact>{Data.state.basicDetail.contact}</Contact>
-                    <a href={Data.state.basicDetail.linkedin} target="_blank" rel="noreferrer"><Icon color={Data.state.themecolor}><AiOutlineLinkedin/></Icon></a>
-                    <a href={Data.state.basicDetail.github} target="_blank" rel="noreferrer"><Icon color={Data.state.themecolor}><AiFillGithub/></Icon></a>
+                    {
+                        Data.state.basicDetail.linkedin && <a href={Data.state.basicDetail.linkedin} target="_blank" rel="noreferrer"><Icon color={Data.state.themecolor}><AiOutlineLinkedin/></Icon></a>
+                    }
+                    {
+                        Data.state.basicDetail.github && <a href={Data.state.basicDetail.github} target="_blank" rel="noreferrer"><Icon color={Data.state.themecolor}><AiFillGithub/></Icon></a>
+                    }
                 </PersonalDetail>
                 <Address><MdLocationOn/>{Data.state.basicDetail.address}</Address> 
             </Wrapper>

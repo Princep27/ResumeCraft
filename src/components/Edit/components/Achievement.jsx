@@ -47,32 +47,20 @@ border: none;
 function Achievement(){
 
     const resumeData = useContext(resumeContext);
-    const focus = resumeData.state.focus;
     const [isExpand,setIsExpand] = useState(true);
 
 
     function handleACH(t,index){
         const temp = {...resumeData.state};
-        let name = t.target.name.split(" ")[0];
-
-       
-        let focusId = t.target.name.split(" ")[1];
         let value = t.target.value;
 
         temp.achievements[index] = value;
-
-        temp.focus = {};
-        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
     function handleAchievementListAdd(){
         const temp = {...resumeData.state};
         temp.achievements.push(" ");
-
-        const focusId = `x${temp.achievements.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
 
         resumeData.setState(temp);
     }
@@ -81,19 +69,12 @@ function Achievement(){
         const temp = {...resumeData.state};
         temp.achievements.pop();
 
-        const focusId = `x${temp.achievements.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
-
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
         temp.achievements = [];
-
-        temp.focus = {};
-        temp.focus.w0 = true;
 
         resumeData.setState(temp);  
     }
@@ -105,10 +86,9 @@ function Achievement(){
 
             {                
                 <Wrapper>
-                {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
                     resumeData.state.achievements.map((item,indx)=>{
-                        return (<Input type="text" key={indx} name={`achievement x${indx}`} value={item} autoFocus={focus[`x${indx}`]} onChange={e=>{handleACH(e,indx)}}/>);
+                        return (<Input type="text" key={indx} name={`achievement x${indx}`} value={item} onChange={e=>{handleACH(e,indx)}}/>);
                     })
                 } 
                 <div>

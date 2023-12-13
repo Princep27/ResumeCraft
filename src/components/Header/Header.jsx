@@ -3,7 +3,8 @@ import Logo from "../../images/Logo.png";
 
 const Hheader = styled.div`
 display: flex;
-width:100%;
+width: 100vw;
+min-width: 1177px;  
 height:55px;
 flex-direction: row;
 background-color:#678983;
@@ -43,11 +44,6 @@ padding:8px;
 `
 
 function Header() {
-
-    function handleClick(){
-        
-    }
-
     return (
         <Hheader>
             <First>

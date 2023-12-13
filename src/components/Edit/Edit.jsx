@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {BiHide} from "react-icons/bi";
 import BasicDetails from "./components/BasicDetail";
 import Education from "./components/Education";
 import Projects from "./components/Projects";
@@ -13,21 +12,22 @@ import ColorTheme from "./components/ColorTheme";
 
 const EditOptions = styled.div`
     height: 100%;
-    width:300px;
-    `
+    width: 300px;
+    position:relative;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+    width: 20px;
+    }
+`
 
 const Eedit = styled.div`
-flex:1;
+min-width: 330px;
+padding-left:15px;
+height: 92vh;
 background-color: #e0e8e6;
-height: calc(100vh - 60px);
 display: flex;
 justify-content: center;
 align-items: center;
-overflow-y: auto;
-overflow-x: scroll;
-::-webkit-scrollbar {
-width: 20px;
-}
 `
 
 function Edit(){

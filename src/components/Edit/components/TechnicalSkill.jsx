@@ -48,16 +48,12 @@ border: none;
 function TechnicalSkill(){
 
     const resumeData = useContext(resumeContext);
-    const focus = resumeData.state.focus;
     const [isExpand,setIsExpand] = useState(true);
 
 
     function handleTS(t,index){
         const temp = {...resumeData.state};
-        let name = t.target.name.split(" ")[0];
-
-       
-        let focusId = t.target.name.split(" ")[1];
+        let name = t.target.name;
         let value = t.target.value;
 
         if(name === "skills"){
@@ -66,39 +62,24 @@ function TechnicalSkill(){
         }else{
             temp.technicalSkill[name] = value;
         }
-
-        temp.focus = {};
-        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
     function handleAboutListAdd(){
         const temp = {...resumeData.state};
         temp.technicalSkill.skills.push(" ");
-        
-        const focusId = `w${temp.technicalSkill.skills.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
-        
         resumeData.setState(temp);
     }
 
     function handleAboutListDelete(){
         const temp = {...resumeData.state};
         temp.technicalSkill.skills.pop();
-        
-        const focusId = `w${temp.technicalSkill.skills.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
-
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
         temp.technicalSkill.skills = [];
-        temp.focus = {};
-        temp.focus.r0 = true;
         resumeData.setState(temp);  
     }
 
@@ -109,10 +90,9 @@ function TechnicalSkill(){
 
             {                
                 <Wrapper>
-                {/* <input type="text" name={`title v`} value={resumeData.state.technicalSkill.title} autoFocus={focus.v} onChange={e=>{handleTS(e,0)}}/> */}
                 {
                     resumeData.state.technicalSkill.skills.map((item,indx)=>{
-                        return (<Input key={indx} type="text" placeholder="Skill" name={`skills w${indx}`} value={item} autoFocus={focus[`w${indx}`]} onChange={e=>{handleTS(e,indx)}}/>);
+                        return (<Input key={indx} type="text" placeholder="Skill" name="skills" value={item} onChange={e=>{handleTS(e,indx)}}/>);
                     })
                 } 
 

@@ -6,20 +6,19 @@ const colorArr = ["#0053c6","#804674","#EB455F","#22A39F","#609966","#DC5F00","#
 
 const Input =styled.div`
         display: flex;
-        justify-content: center;
         align-items: center;
-        margin: 20px;
+        margin: 10px 0px 15px 0px;
     `
 
     const Color = styled.div`
         height: 15px;
         width: 15px;
-        margin: 2px;
+        margin: 0px 2px;
         background-color: ${props=>props.color};
     `
 
     const Heading = styled.h3`
-        margin: 10px;
+        margin: 0px 10px 0px 5px;
     `
 
 

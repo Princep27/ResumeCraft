@@ -1,21 +1,21 @@
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
 import styled from "styled-components";
 import Edit from "../components/Edit/Edit";
 import ResumeTheme from "../resumeTheme/PlainTemplate/PlainTempate";
+import resumeContext from "../context/resumeContext";
 import { useEffect, useRef } from "react";
 import ReactToPrint from "react-to-print";
 import { useContext } from "react";
-import resumeContext from "../context/resumeContext";
 
 const Body = styled.div`
     height: auto;
-    width: auto;
+    min-width: 1161px;
+    position: relative;
 `
 
 const Wrapper = styled.div`
     height: auto;
-    width: 100%;
+    width: auto;
     display: flex;
     position: relative;
     @media print {
@@ -27,12 +27,12 @@ const Wrapper = styled.div`
 
 const Preview = styled.div`
     flex: 3;
-    min-width: 210mm;
+    min-width: 220mm;
     background-color: #d0c9c9;
     height:92vh;
     overflow-y: auto;
     ::-webkit-scrollbar {
-      width: 20px;
+        width: 0px;
     }
     display: flex;
     justify-content: center;
@@ -62,58 +62,56 @@ cursor: pointer;
 background-color: #becbc9;
 `
 
-function Template(){
+function Template({props}){
     const componentRef = useRef();
-    //const resumeData = useContext(resumeContext);
+    const resumeData = useContext(resumeContext);
 
-    // setInterval(
-    //     ()=>localStorage.setItem("data",JSON.stringify(resumeData.state)),
-    // 3000);
+    useEffect(()=>{
+        if(props.fetchData){
+            resumeData.setState(props.fetchData);
+            props.setFetchData();
+        }
+    },[])
 
-    // useEffect(
-    //     ()=>{
-    //         if(localStorage.getItem("data") !== null){
-    //             resumeData.setState(JSON.parse(localStorage.getItem("data")));
-    //         }
-    //     },[]
-    // )   
+    useEffect(()=>{
+        console.log("rdataSet");
+        localStorage.setItem("data",JSON.stringify(resumeData.state))
+    },[resumeData.state]);
 
-    useEffect(() => {
-        const unloadCallback = (event) => {
-          event.preventDefault();
-          event.returnValue = "";
-          return "";
-        };
+    // useEffect(() => {
+    //     const unloadCallback = (event) => {
+    //       event.preventDefault();
+    //       event.returnValue = "";
+    //       return "";
+    //     };
       
-        window.addEventListener("beforeunload", unloadCallback);
-        return () => window.removeEventListener("beforeunload", unloadCallback);
-      }, []);
+    //     window.addEventListener("beforeunload", unloadCallback);
+    //     return () => window.removeEventListener("beforeunload", unloadCallback);
+    //   }, []);
 
     return (
-        <>
+        <Body>
             <ReactToPrint
-                trigger={() => <Button>Print</Button>}
-                content={() => componentRef.current}
-            />
-           <Header/>
-           <Body>
-               <Wrapper>
-                  <Preview>
-                    <Show>
-                    <ShowPreview>
-                        
-                        <div ref={componentRef}>
-                            <ResumeTheme/>
-                        </div>
-                        
-                    </ShowPreview>
-                    </Show>
-                  </Preview>
-                  
-                  <Edit/>
-               </Wrapper>
-           </Body>
-        </>
+                    trigger={() => <Button>Print</Button>}
+                    content={() => componentRef.current}
+                />
+            <Header/>   
+            <Wrapper>
+                <Preview>
+                <Show>
+                <ShowPreview>
+                    
+                    <div ref={componentRef}>
+                        <ResumeTheme/>
+                    </div>
+                    
+                </ShowPreview>
+                </Show>
+                </Preview>
+                
+                <Edit/>
+            </Wrapper>
+        </Body>
     );
 }
 

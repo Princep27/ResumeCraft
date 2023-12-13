@@ -26,18 +26,14 @@ const Wrapper = styled.div`
 function BasicDetail(){
 
     const resumeData = useContext(resumeContext);
-    const focus = resumeData.state.focus;
     const [isExpand,setIsExpand] = useState(true);
 
     function handleBD(t){
         let temp = {...resumeData.state};
-        let name = t.target.name.split(" ")[0];
-        let focusId = t.target.name.split(" ")[1];
+        let name = t.target.name;
         let value = t.target.value;
 
         temp.basicDetail[name] = value;
-        temp.focus = {};
-        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }      
 
@@ -45,13 +41,13 @@ function BasicDetail(){
         <Wrapper style={{"height" : isExpand ? "22px" : "auto", "overflow" : "hidden"}}>
             <Heading onClick={()=>setIsExpand(!isExpand)}>Basic Detail</Heading> 
             <Section>      
-                        <Input type="text" name="name a" value={resumeData.state.basicDetail.name}  autoFocus={focus.a} onChange={handleBD}/>
-                        <Input type="text" name="email b" value={resumeData.state.basicDetail.email} autoFocus={focus.b} onChange={handleBD}/>
-                        <Input type="text" name="linkedin b1" value={resumeData.state.basicDetail.linkedin}  autoFocus={focus.b1} onChange={handleBD}/>
-                        <Input type="text" name="github b2" value={resumeData.state.basicDetail.github}  autoFocus={focus.b2} onChange={handleBD}/>
-                        <Input type="text" name="contact c" value={resumeData.state.basicDetail.contact} autoFocus={focus.c} onChange={handleBD}/>
-                        <Input type="text" name="address d" value={resumeData.state.basicDetail.address} autoFocus={focus.d} onChange={handleBD}/>
-                        <Input type="text" name="summary d1" value={resumeData.state.basicDetail.summary} autoFocus={focus.d1} onChange={handleBD}/>
+                        <Input type="text" name="name" value={resumeData.state.basicDetail.name}  onChange={handleBD}/>
+                        <Input type="text" name="email" value={resumeData.state.basicDetail.email} onChange={handleBD}/>
+                        <Input type="text" name="linkedin" value={resumeData.state.basicDetail.linkedin}   onChange={handleBD}/>
+                        <Input type="text" name="github" value={resumeData.state.basicDetail.github}   onChange={handleBD}/>
+                        <Input type="text" name="contact" value={resumeData.state.basicDetail.contact} onChange={handleBD}/>
+                        <Input type="text" name="address" value={resumeData.state.basicDetail.address} onChange={handleBD}/>
+                        <Input type="text" name="summary" value={resumeData.state.basicDetail.summary}  onChange={handleBD}/>
             </Section>
         </Wrapper>
     )

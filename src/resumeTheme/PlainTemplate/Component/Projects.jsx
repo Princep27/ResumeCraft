@@ -46,6 +46,7 @@ function Projects(){
             {resumeData.state.projects.length ? <hr></hr> :  ""}
             {
                 resumeData.state.projects.map((item,index)=>{
+                    console.log(item.link)
                     return (
                         <Section key={index}>
                            <Title>{item.title} {item.link ? <a href={item.link} target="_blank" rel="noreferrer" style={{"text-decoration" : "none"}}> <AiOutlineLink style={{"cursor":"pointer","color": resumeData.state.themecolor}}/> </a>: ""} </Title>

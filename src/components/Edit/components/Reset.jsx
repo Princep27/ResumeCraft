@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import {GrPowerReset} from "react-icons/gr";
 import { useContext } from "react";
 import resumeContext from "../../../context/resumeContext";
 
 const Button = styled.button`
-padding: 4px 15px 4px 15px;
+padding: 4px 15px 4px 8px;
+margin: 10px 0px 0px 0px;
 cursor: pointer;
-position: absolute;
-top: 80px;
-right: 30px;
-width: 50px;
+${'' /* position: absolute;
+top: 60px;
+right: 20px; */}
+width: 250px;
 height:30px;    
-padding:1px;
 border-radius: 4px;
 border: none;
 color: grey;

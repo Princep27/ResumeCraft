@@ -62,16 +62,12 @@ border: none;
 function Projects(){
 
     const resumeData = useContext(resumeContext);
-    const focus = resumeData.state.focus;
     const [isExpand,setIsExpand] = useState(true);
 
 
     function handleP(t,index,aboutIndex){
         const temp = {...resumeData.state};
-        let name = t.target.name.split(" ")[0];
-
-       
-        let focusId = t.target.name.split(" ")[1];
+        let name = t.target.name;
         let value = t.target.value;
 
         if(name === "about"){
@@ -80,9 +76,6 @@ function Projects(){
         }else{
             temp.projects[index][name] = value;
         }
-
-        temp.focus = {};
-        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
     
@@ -94,44 +87,24 @@ function Projects(){
 
         const temp ={...resumeData.state};
         temp.projects.push(t);
-
-        temp.focus = {};
-        temp.focus[`r${temp.projects.length-1}`] = true;                    
-
         resumeData.setState(temp);
     }
 
     function handleDelete(){
         const temp = {...resumeData.state};
         temp.projects.pop();
-
-        temp.focus = {};
-
-        if( temp.projects.length)
-        temp.focus[`r${temp.projects.length-1}`] = true; 
-        else
-        temp.focus.l0 = true;
-
         resumeData.setState(temp);
     }   
 
     function handleAboutListAdd(index){
         const temp = {...resumeData.state};
         temp.projects[index].about.push(" ");
-
-        temp.focus = {};
-        temp.focus[`t${temp.projects.length-1}_${temp.projects[temp.projects.length-1].about.length-1}`] = true;
-
         resumeData.setState(temp);
     }
 
     function handleAboutListDelete(index){
         const temp = {...resumeData.state};
         temp.projects[index].about.pop();
-
-        temp.focus = {};
-        temp.focus[`t${temp.projects.length-1}_${temp.projects[temp.projects.length-1].about.length-1}`] = true;
-
         resumeData.setState(temp);
     }
 
@@ -143,11 +116,11 @@ function Projects(){
                 resumeData.state.projects.map((item,index)=>{
                     return (
                         <Wrapper key={index} >
-                            <Input type="text" placeholder="Title" name={`title r${index}`} value={item.title} autoFocus={focus[`r${index}`]} onChange={e=>{handleP(e,index,0)}}/>
-                            <Input type="text" placeholder="Link" name={`link s${index}`} value={item.link} autoFocus={focus[`s${index}`]} onChange={e=>{handleP(e,index,0)}}/>
+                            <Input type="text" placeholder="Title" name="title" value={item.title} onChange={e=>{handleP(e,index,0)}}/>
+                            <Input type="text" placeholder="Link" name="link" value={item.link} onChange={e=>{handleP(e,index,0)}}/>
                             {
                                 item.about.map((item2,indx)=>{
-                                    return (<Input key={indx} type="text" placeholder="About" name={`about t${index}_${indx}`} value={item2} autoFocus={focus[`t${index}_${indx}`]} onChange={e=>{handleP(e,index,indx)}}/>);
+                                    return (<Input key={indx} type="text" placeholder="About" name="about" value={item2} onChange={e=>{handleP(e,index,indx)}}/>);
                                 })
                             }
 

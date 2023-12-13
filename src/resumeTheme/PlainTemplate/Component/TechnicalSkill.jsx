@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {HiWrenchScrewdriver} from "react-icons/hi2";
 import { useContext } from "react";
 import resumeContext from "../../../context/resumeContext";
-const themeColor = "#0053c6";
 
 
 const Wrapper = styled.div`
@@ -20,22 +19,12 @@ padding-bottom: 8px;
 padding-top: 8px;
 `
 
-const Section = styled.div`
-width:100%;
-height:400px;
-background-color: azure;
-`
-
 const FlexBox = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
 `
 
-const Title = styled.p`
-width:100%;
-height:auto;
-`
 const Skill = styled.li`
 padding: 3px 10px 3px 0px;
 height:auto;

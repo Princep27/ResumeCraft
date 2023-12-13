@@ -49,54 +49,33 @@ border: none;
 function Profiles(){
 
     const resumeData = useContext(resumeContext);
-    const focus = resumeData.state.focus;
     const [isExpand,setIsExpand] = useState(true);
 
 
     function handleProfile(t,index){
         const temp = {...resumeData.state};
-        let name = t.target.name.split(" ")[0];
-
-       
-        let focusId = t.target.name.split(" ")[1];
+        let name = t.target.name;
         let value = t.target.value;
 
         temp.profiles[index][name] = value;
-
-        temp.focus = {};
-        temp.focus[focusId] = true;
         resumeData.setState(temp);
     }    
 
     function handleProfileListAdd(){
         const temp = {...resumeData.state};
         temp.profiles.push({name : "", "link" : ""});
-
-        const focusId = `xa${temp.profiles.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
-
         resumeData.setState(temp);
     }
 
     function handleProfileListDelete(){
         const temp = {...resumeData.state};
         temp.profiles.pop();
-
-        const focusId = `xa${temp.profiles.length-1}`;
-        temp.focus = {};
-        temp.focus[focusId] = true;
-
         resumeData.setState(temp);
     }    
 
     function deleteAll(){
         const temp = {...resumeData.state};
         temp.profiles = [];
-        
-        temp.focus = {};
-        temp.focus.x0= true;
-
         resumeData.setState(temp);  
     }
 
@@ -111,8 +90,8 @@ function Profiles(){
                     resumeData.state.profiles.map((item,indx)=>{
                         return (
                           <div key={indx}>    
-                          <Input type="text" name={`name xa${indx}`} placeholder="Platform" value={item.name} autoFocus={focus[`xa${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
-                          <Input type="text" name={`link xb${indx}`} placeholder="Profile Link" value={item.link} autoFocus={focus[`xb${indx}`]} onChange={e=>{handleProfile(e,indx)}}/>
+                          <Input type="text" name="name" placeholder="Platform" value={item.name} onChange={e=>{handleProfile(e,indx)}}/>
+                          <Input type="text" name="link" placeholder="Profile Link" value={item.link} onChange={e=>{handleProfile(e,indx)}}/>
                           </div>
                         );
                     })

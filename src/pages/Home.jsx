@@ -15,7 +15,7 @@ function Home() {
     background-image: url(${Image});
     background-repeat: none;
     background-size: cover;
-    width: 100%;
+    min-width: 1177px;
     height: 650px;
     display: flex;
     flex-direction: column;

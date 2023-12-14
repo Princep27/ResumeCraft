@@ -30,8 +30,8 @@ function App() {
     <ResumeState>
         <BrowserRouter>
         <Routes  scrollToTop={false}>
-          <Route path="/" element={<Home/>}></Route>
-          <Route path="template" element={<Template props={{fetchData,setFetchData}} />}></Route>
+          {/* <Route path="/" element={<Home/>}></Route> */}
+          <Route path="/" element={<Template props={{fetchData,setFetchData}} />}></Route>
         </Routes>
       </BrowserRouter>
     </ResumeState>
